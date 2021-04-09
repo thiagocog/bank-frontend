@@ -100,11 +100,15 @@ const Navbar = styled.div`
   }
 `;
 const SJumbotron = styled(Jumbotron)`
+  margin-bottom: 0;
   text-align: center;
   background-color: #fff;
   .title_details {
     margin-bottom: 20px;
-    font-size: 700;
+    /* font-size: 700; */
+    h1 {
+      font-size: 3.5rem;
+    }
   }
   h4 {
     line-height: 30px;
@@ -115,6 +119,14 @@ const SJumbotron = styled(Jumbotron)`
   }
   p {
   }
+
+
+  @media (min-width: 1200px) {
+    h4 {
+      padding: 10px 160px 20px;
+    }
+  }
+
 `;
 
 const SButton = styled(Button)`
@@ -123,7 +135,7 @@ const SButton = styled(Button)`
 `;
 const DetailsAll = styled.div`
   width: 100%;
-  margin-left: 72px;
+  /* margin-left: 72px; */
   align-items: center;
   justify-content: center;
   @media (max-width: 930px) {

@@ -110,6 +110,7 @@ const STable = styled(Table)`
   border-radius: 6px;
   font-size: 14px;
   font-family: "Roboto", sans-serif;
+  margin-bottom: 80px;
 `;
 
 const TableTr = styled.tr`
@@ -135,6 +136,7 @@ const TableTr = styled.tr`
     }
   }
   td {
+    vertical-align: middle;
     :nth-child(1) {
       text-transform: uppercase;
     }
