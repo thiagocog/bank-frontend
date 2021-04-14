@@ -1,15 +1,25 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Redirect, Router, Switch, Route } from "react-router-dom"
 
+//config
+import { isAuthenticated } from "./config/auth"
+
+//layout
+import Layout from "./components/layout/"
+
+//views
 import SignIn from './views/auth/signin'
-import Services from "./views/services";
-import About from "./views/about";
-import Layout from "./components/layout/";
-import Details from "./views/details";
-import Error404 from "./views/errors/404";
+import SignUp from './views/auth/signup'
+import history from './config/history'
+import Services from "./views/services"
+import About from "./views/about"
+import Details from "./views/details"
+import Error404 from "./views/errors/404"
 
-const isAuthenticated = true
+
+// // MOCKADO
+// const isAuthenticated = true
+// // -------------------------
 
 const AdminRoute = ({ ...rest }) => {
   if (!isAuthenticated) {
@@ -21,11 +31,12 @@ const AdminRoute = ({ ...rest }) => {
 
 const Routers = () => {
   return (
-    <Router>
+    <Router history={history}>
       <Layout>
         <Switch>
 
           <Route exact path="/signin" component={SignIn} />
+          <Route exact path='/signup' component={SignUp} />
 
           <AdminRoute exact path="/" component={Services} />
           <AdminRoute exact path="/about" component={About} />

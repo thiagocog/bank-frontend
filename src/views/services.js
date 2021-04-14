@@ -4,10 +4,17 @@ import { Row, Col, Container } from "reactstrap";
 import CardItem from "../components/services/card_item";
 import styled from "styled-components";
 import Loading from "../components/loading/index";
+import { useDispatch, useSelector } from 'react-redux';
+
+
 
 const Services = () => {
+
+  const dispatch = useDispatch()
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  
 
   const getServices = useCallback(() => {
     setLoading(true);

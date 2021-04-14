@@ -1,14 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import GlobalStyle from "./assets/globalStyled";
+import React from "react"
+import ReactDOM from "react-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
+import GlobalStyle from "./assets/globalStyled"
+import { Provider } from 'react-redux'
+import store from './store'
 
-import Routers from "./routers";
+import Routers from "./routers"
 
 ReactDOM.render(
-  <React.Fragment>
+  <Provider store={store}>
     <GlobalStyle />
     <Routers />
-  </React.Fragment>,
+  </Provider>,
   document.getElementById("root"),
 );
