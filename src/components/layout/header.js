@@ -10,16 +10,28 @@ import {
   NavLink,
   Container,
   Tooltip,
-  NavbarText,
+  NavbarText, UncontrolledDropdown, DropdownItem, DropdownToggle, DropdownMenu
 } from "reactstrap";
 import styled from "styled-components";
+import { isAuthenticated } from "../../config/auth";
+import { logoutAction } from "../../store/auth/auth.action";
+import { useSelector, useDispatch } from 'react-redux';
 
 const Header = () => {
+  const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const toggleToolTip = () => setTooltipOpen(!tooltipOpen);
+
+  const logout = () => {
+    dispatch(logoutAction())
+  }
+
+  const user = useSelector(state => state.auth.user)
+
+
 
   return (
     <header>
@@ -39,32 +51,46 @@ const Header = () => {
           </div>
         </SNavbarBrand>
         <NavbarToggler onClick={toggle} />
-        <Container>
-          <SCollapse isOpen={isOpen} navbar>
-            <Nav className="mr-auto" navbar>
-              <NavItem>
-                <SNavLink
-                  exact
-                  tag={RRDNavLink}
-                  activeClassName="active"
-                  to="/"
-                >
-                  Services
-                </SNavLink>
-              </NavItem>
-              <NavItem>
-                <SNavLink
-                  exact
-                  tag={RRDNavLink}
-                  activeClassName="active"
-                  to="/about"
-                >
-                  About
-                </SNavLink>
-              </NavItem>
+        {isAuthenticated() ? (
+          <Container>
+            <SCollapse isOpen={isOpen} navbar>
+              <Nav className="mr-auto" navbar>
+                <NavItem>
+                  <SNavLink
+                    exact
+                    tag={RRDNavLink}
+                    activeClassName="active"
+                    to="/"
+                  >
+                    Services
+                  </SNavLink>
+                </NavItem>
+                <NavItem>
+                  <SNavLink
+                    exact
+                    tag={RRDNavLink}
+                    activeClassName="active"
+                    to="/about"
+                  >
+                    About
+                  </SNavLink>
+                </NavItem>
+              </Nav>
+            </SCollapse>
+            <Nav >
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  {user?.client}
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem>Perfil</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem onClick={logout}>Sair</DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
             </Nav>
-          </SCollapse>
-        </Container>
+          </Container>
+        ) : ""}
         <SNavbarText>
           <h6>Think Different!</h6>
         </SNavbarText>
@@ -100,6 +126,7 @@ const SCollapse = styled(Collapse)`
   ) !important;
   /* background-color: rgb(66, 20, 95, 0.95); */
   padding-left: 10px;
+  max-height: 80px;
 
   @media (max-width: 575px) {
     li {
@@ -132,7 +159,7 @@ const SNavLink = styled(NavLink)`
   font-family: "Montserrat";
   font-weight: 500;
   text-transform: uppercase;
-  padding: 26px 0;
+  padding: 27px 0;
 
   &.active {
     color: #42145f !important;

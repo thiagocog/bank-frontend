@@ -22,7 +22,7 @@ import Error404 from "./views/errors/404"
 // // -------------------------
 
 const AdminRoute = ({ ...rest }) => {
-  if (!isAuthenticated) {
+  if (!isAuthenticated()) {
     return <Redirect to="/signin" />
   }
 

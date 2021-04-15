@@ -9,6 +9,7 @@ import { Sign } from '../../assets/styled';
 import { Link } from 'react-router-dom';
 import { signInAction } from '../../store/auth/auth.action'
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 
 
 const SignIn = () => {
@@ -55,7 +56,7 @@ const SignIn = () => {
         </Alert>
 
         <Card>
-          <CardHeader tag="h4" className="text-center">Login</CardHeader>
+          <SCardHeader tag="h4" className="text-center">Login</SCardHeader>
           <CardBody>
             <Form>
               <FormGroup>
@@ -67,7 +68,7 @@ const SignIn = () => {
                 <Input disabled={loading} type="password" name="password" id="password" onChange={handleChange} value={form.password || ""} placeholder="Informe sua senha" />
               </FormGroup>
 
-              <Button color={isNotValid() || loading ? 'secondary' : 'primary'} disabled={isNotValid()} size="sm" block onClick={submitForm}>
+              <Button color={isNotValid() || loading ? 'secondary' : 'info'} disabled={isNotValid()} size="sm" block onClick={submitForm}>
                 {loading ? (<><Spinner size="sm" color="light" /> Carregando...</>) : "Enviar"}
               </Button>
             </Form>
@@ -83,3 +84,9 @@ const SignIn = () => {
 }
 
 export default SignIn
+
+const SCardHeader = styled(CardHeader)`
+  background-color: rgb(206, 59, 87, 0.1);
+
+
+`
