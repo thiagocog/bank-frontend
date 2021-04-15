@@ -18,7 +18,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       return state
     case TYPES.SIGN_IN: 
       state.token = action.data.token
-      state.client = action.data.user.client
+      state.client = action.data.user
       state.loading = false
       return state
     case TYPES.SIGN_UP: 

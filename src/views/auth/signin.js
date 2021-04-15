@@ -47,7 +47,7 @@ const SignIn = () => {
 
   return (
     <Sign>
-      <Col sm={12} md={4} lg={5}>
+      <Col sm={12} md={8} lg={5}>
 
         <Alert color="danger" isOpen={hasError} toggle={closeError}>
           <div><strong>OPS! </strong>Aconteceu um erro.</div>
@@ -61,7 +61,7 @@ const SignIn = () => {
             <Form>
               <FormGroup>
                 <Label for="email">E-mail:</Label>
-                <Input disabled={loading} type="email" name="client" id="client" onChange={handleChange} value={form.client || ""} placeholder="Informe seu E-mail" />
+                <Input disabled={loading} type="email" name="user" id="user" onChange={handleChange} value={form.user || ""} placeholder="Informe seu E-mail" />
               </FormGroup>
               <FormGroup>
                 <Label for="password">Password:</Label>
@@ -87,6 +87,4 @@ export default SignIn
 
 const SCardHeader = styled(CardHeader)`
   background-color: rgb(206, 59, 87, 0.1);
-
-
 `

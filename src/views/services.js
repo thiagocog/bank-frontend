@@ -11,27 +11,26 @@ import { useDispatch, useSelector } from 'react-redux';
 const Services = () => {
 
   const dispatch = useDispatch()
-  const [services, setServices] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [services, setServices] = useState([])
+  const [loading, setLoading] = useState(false)
 
   
-
   const getServices = useCallback(() => {
-    setLoading(true);
+    setLoading(true)
     getBankAllServices()
       .then((res) => {
-        setServices(res.data);
-        setLoading(false);
+        setServices(res.data)
+        setLoading(false)
       })
       .catch((err) => {
-        console.log("error alert");
-        setLoading(false);
+        console.log("error alert")
+        setLoading(false)
       });
   }, []);
 
   useEffect(() => {
-    getServices();
-  }, [getServices]);
+    getServices()
+  }, [getServices])
 
   //mount services
   const mappingServices = (services) =>

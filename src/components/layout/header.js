@@ -16,6 +16,9 @@ import styled from "styled-components";
 import { isAuthenticated } from "../../config/auth";
 import { logoutAction } from "../../store/auth/auth.action";
 import { useSelector, useDispatch } from 'react-redux';
+import history from '../../config/history'
+
+
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -29,7 +32,21 @@ const Header = () => {
     dispatch(logoutAction())
   }
 
-  const user = useSelector(state => state.auth.user)
+  const user = useSelector(state => state.auth.client)
+
+  const nameArray = user?.name?.split(' ')
+  let officialName = ''
+  nameArray?.forEach((element, index) => {
+    if (index === 0 || index === nameArray.length - 1) {
+      officialName = officialName + ' ' + element
+    }
+  })
+  
+  
+
+
+
+
 
 
 
@@ -77,18 +94,18 @@ const Header = () => {
                 </NavItem>
               </Nav>
             </SCollapse>
-            <Nav >
+            <SNav>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  {user?.client}
-                </DropdownToggle>
+                <SDropdownToggle nav caret>
+                  <strong className="profile">{officialName}</strong>
+                </SDropdownToggle>
                 <DropdownMenu>
                   <DropdownItem>Perfil</DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem onClick={logout}>Sair</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-            </Nav>
+            </SNav>
           </Container>
         ) : ""}
         <SNavbarText>
@@ -112,6 +129,16 @@ const SNavbar = styled(Navbar)`
   width: 100%;
   height: 80px;
   z-index: 100;
+
+  a {
+    color: #fff !important;
+
+    .profile {
+      margin-right: 0.3rem;
+      font-weight: normal;
+      font-size: 0.9rem;
+    }
+  }
 
   @media (max-width: 769px) {
     justify-content: space-between;
@@ -141,6 +168,7 @@ const SCollapse = styled(Collapse)`
       font-family: "Montserrat", serif;
       padding: 10px 0px;
       margin-top: 10px;
+      color: #fff !important;
     }
   }
 `;
@@ -175,3 +203,11 @@ const SNavbarBrand = styled(NavbarBrand)`
     margin-right: 50px;
   }
 `;
+
+const SDropdownToggle = styled(DropdownToggle)`
+  display: flex;
+  align-items: center;
+`
+const SNav = styled(Nav)`
+  /* background-color: #62145f */
+`
