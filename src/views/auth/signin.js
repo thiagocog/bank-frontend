@@ -68,9 +68,9 @@ const SignIn = () => {
                 <Input disabled={loading} type="password" name="password" id="password" onChange={handleChange} value={form.password || ""} placeholder="Informe sua senha" />
               </FormGroup>
 
-              <Button color={isNotValid() || loading ? 'secondary' : 'info'} disabled={isNotValid()} size="sm" block onClick={submitForm}>
+              <SButton color={isNotValid() || loading ? 'secondary' : 'info'} disabled={isNotValid()} size="sm" block onClick={submitForm}>
                 {loading ? (<><Spinner size="sm" color="light" /> Carregando...</>) : "Enviar"}
-              </Button>
+              </SButton>
             </Form>
           </CardBody>
 
@@ -87,4 +87,10 @@ export default SignIn
 
 const SCardHeader = styled(CardHeader)`
   background-color: rgb(206, 59, 87, 0.1);
+`
+
+const SButton = styled(Button)`
+  .btn-info {
+    background-color: rgb(206, 59, 87, 0.1);
+  }
 `

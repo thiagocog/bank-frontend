@@ -132,6 +132,7 @@ const SJumbotron = styled(Jumbotron)`
 const SButton = styled(Button)`
   display: flex;
   align-items: center;
+  padding: 10px 30px;
 `;
 const DetailsAll = styled.div`
   width: 100%;

@@ -13,8 +13,8 @@ const getToken = () => {
 
 const getClient = () => {
   const data = JSON.parse(localStorage.getItem(TOKEN_KEY))
-  if (data && data.client) {
-    return data.client
+  if (data && data.user) {
+    return data.user
   }
   return false
 }

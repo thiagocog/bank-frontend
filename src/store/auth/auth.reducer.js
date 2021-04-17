@@ -33,6 +33,7 @@ const reducer = (state = INITIAL_STATE, action) => {
     case TYPES.SIGN_OUT: 
       state.token = ""
       state.client = {}
+      state.error = []
       return state
     default:
       return state;

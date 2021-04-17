@@ -34,6 +34,7 @@ const Header = () => {
 
   const user = useSelector(state => state.auth.client)
 
+
   const nameArray = user?.name?.split(' ')
   let officialName = ''
   nameArray?.forEach((element, index) => {
@@ -43,11 +44,6 @@ const Header = () => {
   })
   
   
-
-
-
-
-
 
 
   return (
@@ -68,7 +64,7 @@ const Header = () => {
           </div>
         </SNavbarBrand>
         <NavbarToggler onClick={toggle} />
-        {isAuthenticated() ? (
+        {/* {isAuthenticated() ? ( */}
           <Container>
             <SCollapse isOpen={isOpen} navbar>
               <Nav className="mr-auto" navbar>
@@ -95,6 +91,7 @@ const Header = () => {
               </Nav>
             </SCollapse>
             <SNav>
+            {isAuthenticated() ? (
               <UncontrolledDropdown nav inNavbar>
                 <SDropdownToggle nav caret>
                   <strong className="profile">{officialName}</strong>
@@ -105,9 +102,10 @@ const Header = () => {
                   <DropdownItem onClick={logout}>Sair</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
+            ) : ""}
             </SNav>
           </Container>
-        ) : ""}
+        {/* // ) : ""} */}
         <SNavbarText>
           <h6>Think Different!</h6>
         </SNavbarText>
@@ -122,7 +120,7 @@ const SNavbar = styled(Navbar)`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 8px;
+  padding: 0 10px;
   position: fixed;
   background: linear-gradient(90deg, #42145f 10%, #62145f 200%) !important;
   top: 0;

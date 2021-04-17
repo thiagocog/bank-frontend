@@ -1,4 +1,5 @@
-import { getBankAllServices } from '../../services/serv.service'
+
+import { getBankAllServices } from '../../services/serv.service';
 
 export const TYPES = {
   SERVICE_LOADING: "SERVICE_LOADING",

@@ -7,10 +7,10 @@ const INITIAL_STATE = {
 
 const reducer = (state = INITIAL_STATE, action) => { 
     switch (action.type) {
-        case TYPES.COURSE_LOADING:
+        case TYPES.SERVICE_LOADING:
             state.loading = action.status
             return state;
-        case TYPES.COURSE_ALL:
+        case TYPES.SERVICE_ALL:
             state.all = action.data
             state.loading = false
             return state;

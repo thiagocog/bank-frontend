@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getToken, removeToken } from './auth';
 import history from './history';
+import store from '../store'
 
 
 const urlApi = process.env.REACT_APP_API;

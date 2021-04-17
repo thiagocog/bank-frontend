@@ -5,32 +5,25 @@ import CardItem from "../components/services/card_item";
 import styled from "styled-components";
 import Loading from "../components/loading/index";
 import { useDispatch, useSelector } from 'react-redux';
+import { getServices } from "../store/service/serv.action";
 
 
 
 const Services = () => {
 
   const dispatch = useDispatch()
-  const [services, setServices] = useState([])
-  const [loading, setLoading] = useState(false)
+  // const [services, setServices] = useState([])
+  // const [loading, setLoading] = useState(false)
 
-  
-  const getServices = useCallback(() => {
-    setLoading(true)
-    getBankAllServices()
-      .then((res) => {
-        setServices(res.data)
-        setLoading(false)
-      })
-      .catch((err) => {
-        console.log("error alert")
-        setLoading(false)
-      });
-  }, []);
+  const services = useSelector(state => state.service.all)
+  const loading = useSelector(state => state.service.loading)
 
+  // console.log(services)
   useEffect(() => {
-    getServices()
-  }, [getServices])
+    dispatch(getServices());
+  }, [dispatch])
+
+
 
   //mount services
   const mappingServices = (services) =>
@@ -77,7 +70,8 @@ const SJumbotron = styled(Row)`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 30px 0 0 72px; // because footer has 72px
+  //margin: 30px 0 0 72px; // because footer has 72px
+  margin-top: 20px;
   overflow: hidden;
   @media (max-width: 1059px) {
     margin: 0 auto;
@@ -97,7 +91,7 @@ display: flex;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     p {
       width: 100%;
       text-align: justify;

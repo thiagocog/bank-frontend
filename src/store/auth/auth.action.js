@@ -3,6 +3,8 @@ import { authService, registerClientService } from "../../services/auth.service"
 import history from '../../config/history';
 import http from '../../config/http';
 
+
+
 export const TYPES = {
   SIGN_IN: "SIGN_IN",
   SIGN_UP: "SIGN_UP",
@@ -10,6 +12,8 @@ export const TYPES = {
   SIGN_ERROR: "SIGN_ERROR",
   SIGN_LOADING: "SIGN_LOADING",
 }
+
+
 
 export const signInAction = (data) => {
   return async (dispatch) => {
@@ -23,7 +27,8 @@ export const signInAction = (data) => {
       }
       
       dispatch({
-        type: TYPES.SIGN_IN, data: result.data  
+        type: TYPES.SIGN_IN, 
+        data: result.data  
       })
       history.push('/')
     } catch (error) {
