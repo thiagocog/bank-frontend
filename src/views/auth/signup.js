@@ -24,14 +24,14 @@ const SignUp = () => {
   const registered = useSelector(state => state.auth.registered)
 
   const [form, setForm] = useState({
-    name: 'Thiago',
-    email: 'thiago@aluno.com',
+    name: 'Thiago Carvalho de Onofre Gonçalves',
+    email: 'thiago@al.infnet.edu.br',
     birthday: '25/12/1989',
-    password: '123123'
+    password: '123456'
   })
 
   const handleChange = (props) => {
-    const { value, name } = props.target;
+    const { name, value } = props.target;
     setForm({
         ...form,
         [name]: value,
@@ -47,8 +47,8 @@ const SignUp = () => {
     //   ...form,
     //   datanascimento: formatDate(form.datanascimento)
     // }
-    event.preventDefault()
-    dispatch(signUpAction(Form))
+    
+    dispatch(signUpAction(form))
   }
 
   const isNotValid = () => {
@@ -71,16 +71,17 @@ const SignUp = () => {
   return (
 
     <Sign>
-      <Col sm={12} md={4} lg={5}>
+      <Col sm={12} md={8} lg={5}>
         <Alert color="success" isOpen={success} toggle={() => showSuccess(!success)}>
           <div><strong>Usuario</strong> cadastrado com sucesso.</div>
+          <small>Você será redirecionado em 5s</small>
         </Alert>
         <Alert color="danger" isOpen={hasError} toggle={closeError}>
           <div><strong>OPS! </strong> Aconteceu um erro.</div>
           <small>Verifique o usuário e a senha.</small>
         </Alert>
         <Card>
-          <SCardHeader tag="h4" className="text-center">Cadastre-se</SCardHeader>
+          <SCardHeader tag="h4" className="text-center">Register</SCardHeader>
           <CardBody>
             <Form>
               <FormGroup>

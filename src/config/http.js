@@ -2,6 +2,7 @@ import axios from "axios";
 import { getToken, removeToken } from './auth';
 import history from './history';
 import store from '../store'
+import { logoutAction } from '../store/auth/auth.action'
 
 
 const urlApi = process.env.REACT_APP_API;
@@ -18,15 +19,16 @@ if (getToken()) {
 http.interceptors.response.use(
   (response) => response,
   (error) => {
-      switch (error.response.status) {
-          case 401:
-              removeToken()
-              history.push('/signin')
-              break;
-          default:
-              break;
-      }
+    switch (error.response.status) {
+      case 401:
+        // removeToken()
+        store.dispatch(logoutAction())
+        history.push('/signin')
+        break;
+      default:
+        break;
   }
+}
 )
 
 

@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 
+
 const SignIn = () => {
 
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const SignIn = () => {
 
 
   const handleChange = (props) => {
-    const { value, name } = props.target;
+    const { name, value } = props.target;
     setForm({
         ...form,
         [name]: value,

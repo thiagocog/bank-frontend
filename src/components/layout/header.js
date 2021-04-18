@@ -20,21 +20,23 @@ import history from '../../config/history'
 
 
 
+//-----COMPONENT
 const Header = () => {
+
   const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const toggleToolTip = () => setTooltipOpen(!tooltipOpen);
+  const isAdmin = useSelector(state => state.auth.isAdmin)
+  const user = useSelector(state => state.auth.client)
+
 
   const logout = () => {
     dispatch(logoutAction())
   }
-
-  const user = useSelector(state => state.auth.client)
-
-
+  
+  //script para selecionar o primeiro e o último nome da usuário
   const nameArray = user?.name?.split(' ')
   let officialName = ''
   nameArray?.forEach((element, index) => {
@@ -78,6 +80,11 @@ const Header = () => {
                     Services
                   </SNavLink>
                 </NavItem>
+                {isAdmin ? (
+                  <NavItem>
+                      <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/services">Services</SNavLink>
+                  </NavItem>
+                ) : ""}
                 <NavItem>
                   <SNavLink
                     exact
@@ -97,9 +104,12 @@ const Header = () => {
                   <strong className="profile">{officialName}</strong>
                 </SDropdownToggle>
                 <DropdownMenu>
-                  <DropdownItem>Perfil</DropdownItem>
+                {isAdmin ? (
+                  <DropdownItem onClick={() => history.push('/users')}>Users</DropdownItem>
+                ) : ""}
+                  <DropdownItem onClick={() => history.push('/profile')}>Profile</DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem onClick={logout}>Sair</DropdownItem>
+                  <DropdownItem onClick={logout}>Logout</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
             ) : ""}
@@ -120,7 +130,7 @@ const SNavbar = styled(Navbar)`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 10px;
+  padding: 0 16px;
   position: fixed;
   background: linear-gradient(90deg, #42145f 10%, #62145f 200%) !important;
   top: 0;
@@ -205,6 +215,7 @@ const SNavbarBrand = styled(NavbarBrand)`
 const SDropdownToggle = styled(DropdownToggle)`
   display: flex;
   align-items: center;
+  letter-spacing: 0.8px;
 `
 const SNav = styled(Nav)`
   /* background-color: #62145f */

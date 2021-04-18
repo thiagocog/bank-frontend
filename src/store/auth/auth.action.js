@@ -37,27 +37,38 @@ export const signInAction = (data) => {
   }
 }
 
+
+
 export const signUpAction = (data) => {
 
   return async (dispatch) => {
     dispatch({ type: TYPES.SIGN_LOADING, status: true })
     try {
       const result = await registerClientService(data) 
+      if (result.data) {
+        saveAuth(result.data)
+        http.defaults.headers['token'] = result.data.token
+      }
       dispatch({
         type: TYPES.SIGN_UP, data: result.data  
       })
+      setTimeout(() => {
+        history.push('/')
+      }, 5000)
     } catch (error) {
       dispatch({ type: TYPES.SIGN_ERROR, data: error })
     }
   }
 }
 
+
+
 export const logoutAction = (data) => {
   return async (dispatch) => {
     removeToken()
     dispatch({ type: TYPES.SIGN_OUT })
     history.push('/signin')
-  };
+  }
 }
 
 
