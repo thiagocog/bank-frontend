@@ -46,27 +46,6 @@ export default Footer;
 
 
 
-
-const Masc = styled.div`
-  position: absolute;
-  left: 0;
-  top: 80px;
-  height: 100%;
-  background-color: #fff;
-  width: 80px;
-  transition-duration: 2s;
-
-
-  :hover {
-    display: none;
-    transition-duration: 2s;
-  }
-
-  @media (max-width: 1059px) {
-    display: none;
-  }
-`
-
 const Sfooter = styled.footer`
   z-index: 2;
   position: fixed;
@@ -97,6 +76,17 @@ const Sfooter = styled.footer`
     }
   }
 
+  /* @keyframes slideBack {
+    from {
+      opacity: 1;
+      left: 0px;
+    }
+    to {
+      opacity: 0;
+      left: -40px;
+    }
+  } */
+
 
   .footer_icons {
     display: flex;
@@ -111,12 +101,18 @@ const Sfooter = styled.footer`
     padding-bottom: 10px;
     color: #fff;
   }
-  @media (max-width: 1059px) {
+  @media (max-width: 1100px) {
     min-width: 100%;
     height: 72px;
     position: relative;
     justify-content: center;
     align-items: center;
+    opacity: 1;
+
+    :hover {
+      animation: none;
+    }
+
     .footer_icons {
       width: 100%;
       flex-wrap: nowrap;
@@ -134,7 +130,11 @@ const Sfooter = styled.footer`
 const SVscTriangleRight = styled(VscTriangleRight)`
   position: absolute;
   z-index: 1;
-  left: 20px;
+  left: 6px;
   top: 380px;
   color: #62145f;
+
+  @media (max-width: 1100px) {
+    display: none;
+  }
 `

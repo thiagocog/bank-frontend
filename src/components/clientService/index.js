@@ -45,10 +45,10 @@ const Client = ({ id, update, isForm }) => {
             id="formName"
             value={form.name || ""}
             onChange={handleChange}
-            placeholder="name:"
+            placeholder="Name:"
             autoFocus
             required
-            className="text-uppercase"
+            // className="text-uppercase"
           />
         </SFormGroup>
 
@@ -60,9 +60,9 @@ const Client = ({ id, update, isForm }) => {
             id="email"
             value={form.email || ""}
             onChange={handleChange}
-            placeholder="email:"
+            placeholder="Email:"
             required
-            className="text-lowercase"
+            // className="text-lowercase"
           />
         </SFormGroup>
         <SFormGroup>
@@ -73,7 +73,7 @@ const Client = ({ id, update, isForm }) => {
             value={form.address || ""}
             onChange={handleChange}
             id="address"
-            placeholder="address:"
+            placeholder="Address:"
             required
           />
         </SFormGroup>

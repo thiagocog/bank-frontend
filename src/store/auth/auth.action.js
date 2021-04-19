@@ -1,5 +1,5 @@
 import { removeToken, saveAuth } from "../../config/auth";
-import { authService, registerClientService } from "../../services/auth.service";
+import { authService, registerUserService } from "../../services/auth.service";
 import history from '../../config/history';
 import http from '../../config/http';
 
@@ -44,7 +44,7 @@ export const signUpAction = (data) => {
   return async (dispatch) => {
     dispatch({ type: TYPES.SIGN_LOADING, status: true })
     try {
-      const result = await registerClientService(data) 
+      const result = await registerUserService(data) 
       if (result.data) {
         saveAuth(result.data)
         http.defaults.headers['token'] = result.data.token

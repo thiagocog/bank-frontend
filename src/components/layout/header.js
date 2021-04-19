@@ -66,7 +66,6 @@ const Header = () => {
           </div>
         </SNavbarBrand>
         <NavbarToggler onClick={toggle} />
-        {/* {isAuthenticated() ? ( */}
           <Container>
             <SCollapse isOpen={isOpen} navbar>
               <Nav className="mr-auto" navbar>
@@ -77,7 +76,7 @@ const Header = () => {
                     activeClassName="active"
                     to="/"
                   >
-                    Services
+                    Home
                   </SNavLink>
                 </NavItem>
                 {isAdmin ? (
@@ -115,7 +114,6 @@ const Header = () => {
             ) : ""}
             </SNav>
           </Container>
-        {/* // ) : ""} */}
         <SNavbarText>
           <h6>Think Different!</h6>
         </SNavbarText>
@@ -186,8 +184,8 @@ const SNavbarText = styled(NavbarText)`
   margin-right: 150px !important;
   @media (max-width: 769px) {
     display: none;
-  } ;
-`;
+  } 
+`
 
 const SNavLink = styled(NavLink)`
   color: #ccc !important;
@@ -195,7 +193,7 @@ const SNavLink = styled(NavLink)`
   font-family: "Montserrat";
   font-weight: 500;
   text-transform: uppercase;
-  padding: 27px 0;
+  padding: 27px 20px !important;
 
   &.active {
     color: #42145f !important;
@@ -215,7 +213,7 @@ const SNavbarBrand = styled(NavbarBrand)`
 const SDropdownToggle = styled(DropdownToggle)`
   display: flex;
   align-items: center;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.4px;
 `
 const SNav = styled(Nav)`
   /* background-color: #62145f */

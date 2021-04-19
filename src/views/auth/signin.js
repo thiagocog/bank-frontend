@@ -39,11 +39,13 @@ const SignIn = () => {
     dispatch(signInAction(form))
   }
 
-  const isNotValid = () => form?.client?.length === 0 || form?.password?.length === 0
+
+  const isNotValid = () => form?.user?.length === 0 || form?.password?.length === 0
 
   useEffect(() => {
     setHasError(error.length > 0)
   }, [error])
+
 
 
   return (

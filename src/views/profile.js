@@ -33,7 +33,7 @@ const Profile = () => {
     return (
         <>
             <BoxInscricao>
-                <Col xs="12" sm="12" md="8" lg="8">
+                <Col xs="12" sm="12" md="10" lg="10">
                     <FormGroup>
                         <Label for="name">Name</Label>
                         <Input type="text" name="name" id="name" value={form.name || ""} className="text-uppercase" onChange={handleChange} />
@@ -42,13 +42,15 @@ const Profile = () => {
                         <Label for="email">Email</Label>
                         <Input type="email" name="email" id="email" value={form.email || ""} className="text-lowercase" onChange={handleChange} />
                     </FormGroup>
-                    <FormGroup>
-                        <Label for="birthday">Birth Date</Label>
-                        <Input type="date" name="birthday" id="birthday" value={form.birthday || ""} onChange={handleChange} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Button color="primary" onClick={updateForm}>Cadastrar</Button>
-                    </FormGroup>
+                    <BoxDateButton>
+                        <FormGroup>
+                            <Label for="birthday">Birth Date</Label>
+                            <SInput type="date" name="birthday" id="birthday" value={form.birthday || ""} onChange={handleChange} />
+                        </FormGroup>
+                        <FormGroup>
+                            <SButton color="info" onClick={updateForm}>Update</SButton>
+                        </FormGroup>
+                    </BoxDateButton>
                 </Col>
             </BoxInscricao>
         </>
@@ -65,4 +67,24 @@ export default Profile
 // Styled Components
 
 const BoxInscricao = styled(Row)`
+    width: 50%;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: -50px;
+`
+
+const SInput = styled(Input)`
+    width: 100%;
+    flex: 1;
+`
+
+const SButton = styled(Button)`
+    padding: 6px 26px;
+`
+
+const BoxDateButton = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
 `

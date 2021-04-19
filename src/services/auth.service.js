@@ -20,10 +20,10 @@ const authService = (data) => http.post('/auth', data);
 
 
 
-const registerClientService = (data) => http.post('/client', data);
+const registerUserService = (data) => http.post('/client', data);
 
 
 export {
     authService,
-    registerClientService
+    registerUserService
 }

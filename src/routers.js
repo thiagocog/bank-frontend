@@ -10,7 +10,7 @@ import Layout from "./components/layout/"
 //views
 import SignIn from './views/auth/signin'
 import SignUp from './views/auth/signup'
-import Start from "./views/start"
+import Home from "./views/home"
 import Profile from "./views/profile"
 import Services from "./views/services"
 import Users from "./views/users"
@@ -53,7 +53,7 @@ const Routers = () => {
           <Route exact path="/signin" component={SignIn} />
           <Route exact path='/signup' component={SignUp} />
 
-          <AdminRoute exact path="/" component={Start} />
+          <AdminRoute exact path="/" component={Home} />
           <AdminRoute exact path="/about" component={About} />
           <AdminRoute exact path="/details/:id" component={Details} />
           <AdminRoute exact path="/profile" component={Profile} />

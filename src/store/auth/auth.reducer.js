@@ -20,14 +20,14 @@ const reducer = (state = INITIAL_STATE, action) => {
     case TYPES.SIGN_IN: 
       state.token = action.data.token
       state.client = action.data.user
-      state.isAdmin = action.data.usuario.tipo === '1'
+      state.isAdmin = action.data.user.tipo === '1'
       state.loading = false
       return state
     case TYPES.SIGN_UP: 
       state.registered = true
       state.token = action.data.token
       state.client = action.data.user
-      state.isAdmin = action.data.usuario.tipo === '1'
+      state.isAdmin = action.data.user.tipo === '1'
       state.loading = false
       return state
     case TYPES.SIGN_ERROR: 
