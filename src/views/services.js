@@ -1,21 +1,41 @@
+import { useEffect, useState } from 'react';
+import { TitlePage } from "../assets/styled";
+import { Button } from 'reactstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import { getServices } from "../store/service/serv.action";
+import TableList from '../components/services/tableList';
+import FormService from '../components/services/form';
 
-import React from 'react';
 
 
+const ManageServices = () => {
 
-const MenageServices = () => {
+    document.title = 'TB - services'
+    const dispatch = useDispatch()
+    const [isForm, setIsForm] = useState(false)
+    const services = useSelector(state => state.service.all)
+
+    useEffect(() => {
+        dispatch(getServices());
+    }, [dispatch])
+
 
     return (
 
-        <React.Fragment>
+        <>
+            {/* <TitlePage>
 
-            <h2>Services Management</h2>
+                Services Management  */}
+                <Button onClick={() => setIsForm(!isForm)} size="sm" color="info">{isForm ? 'Listar' : 'Cadastrar'}</Button>
 
-        </React.Fragment>
+            {/* </TitlePage> */}
+
+            {isForm ? <FormService setIsForm={setIsForm} /> : <TableList services={services} />}
+        </>
 
     )
 }
     
 
 
-export default MenageServices
+export default ManageServices

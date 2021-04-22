@@ -1,10 +1,11 @@
 
-import { getBankAllServices } from '../../services/serv.service';
+import { getBankAllServices, createServService } from '../../services/serv.service';
 
 export const TYPES = {
   SERVICE_LOADING: "SERVICE_LOADING",
   SERVICE_ALL: "SERVICE_ALL",
 }
+
 
 export const getServices = () => {
   return async (dispatch) => {
@@ -23,3 +24,25 @@ export const getServices = () => {
     }
   }
 }
+
+
+
+export const createService = (service) => {
+
+  return async (dispatch) => {
+
+    dispatch({ type: TYPES.SERVICE_LOADING, status: true })
+
+    try {
+
+      const result = await createServService(service)
+      dispatch(getServices())
+
+    } catch (error) {
+
+      dispatch({ type: TYPES.SERVICE_LOADING, status: false})
+      console.log(`##### Erro ao criar um novo serviço #####`);
+      
+    }
+  }
+} 

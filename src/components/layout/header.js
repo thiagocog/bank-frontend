@@ -146,6 +146,7 @@ const SNavbar = styled(Navbar)`
     }
   }
 
+
   @media (max-width: 769px) {
     justify-content: space-between;
   }
@@ -159,7 +160,8 @@ const SCollapse = styled(Collapse)`
   ) !important;
   /* background-color: rgb(66, 20, 95, 0.95); */
   padding-left: 10px;
-  max-height: 80px;
+  /* max-height: 80px; */
+  min-height: 80px;
 
   @media (max-width: 575px) {
     li {
@@ -193,11 +195,20 @@ const SNavLink = styled(NavLink)`
   font-family: "Montserrat";
   font-weight: 500;
   text-transform: uppercase;
-  padding: 27px 20px !important;
+  padding: 26.5px 20px !important;
 
   &.active {
     color: #42145f !important;
     background-color: #fff !important;
+  }
+
+  @media (max-width: 575px) {
+
+    :nth-child(1) {
+      /* padding-top: 60px !important; */
+    }
+    margin-top: 10px !important;
+    padding-top: 10px !important;
   }
 `;
 

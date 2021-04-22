@@ -58,12 +58,14 @@ const Sfooter = styled.footer`
   top: 0;
   padding: 11px;
   opacity: 0;
-  /* transition: .2s; */
+  animation: slideBack .4s forwards;
 
 
   :hover {
-    animation: slideRight .4s forwards
+    animation: slideRight .4s forwards;
   }
+
+  
 
   @keyframes slideRight {
     from {
@@ -76,7 +78,7 @@ const Sfooter = styled.footer`
     }
   }
 
-  /* @keyframes slideBack {
+  @keyframes slideBack {
     from {
       opacity: 1;
       left: 0px;
@@ -85,7 +87,7 @@ const Sfooter = styled.footer`
       opacity: 0;
       left: -40px;
     }
-  } */
+  }
 
 
   .footer_icons {

@@ -23,12 +23,7 @@ const SignUp = () => {
   const error = useSelector(state => state.auth.error)
   const registered = useSelector(state => state.auth.registered)
 
-  const [form, setForm] = useState({
-    name: 'Thiago Carvalho de Onofre Gonçalves',
-    email: 'thiago@al.infnet.edu.br',
-    birthday: '25/12/1989',
-    password: '123456'
-  })
+  const [form, setForm] = useState({})
 
   const handleChange = (props) => {
     const { name, value } = props.target;
@@ -40,19 +35,24 @@ const SignUp = () => {
 
   const closeError = () => setHasError(false);
 
-  // const formatDate = (date) => '02/02/1989'
+  // const formatDate = (data) => {
+  //   const [d, m, y] = data.split('/')
+  //   return `${y}-${m}-${d}`
+  // }
+
 
   const submitForm = (event) => {
     // const nForm = {
     //   ...form,
-    //   datanascimento: formatDate(form.datanascimento)
+    //   birthday: formatDate(form.birthday)
     // }
     
     dispatch(signUpAction(form))
   }
 
   const isNotValid = () => {
-    const inputs = ['name', 'birthday', 'email', 'password']
+    // const inputs = ['name', 'birthday', 'email', 'password']
+    const inputs = ['name', 'email', 'password']
     const invalid = (label) => !Object.keys(form).includes(label) || form[label].length === 0
     return inputs.some(item => invalid(item))
   }
@@ -92,10 +92,10 @@ const SignUp = () => {
                 <Label for="email">E-mail:</Label>
                 <Input disabled={loading} type="email" name="email" id="email" onChange={handleChange} value={form.email || ""} placeholder="Informe seu E-mail" />
               </FormGroup>
-              <FormGroup>
+              {/* <FormGroup>
                 <Label for="birthday">Birth date:</Label>
                 <Input disabled={loading} type="date" name="birthday" id="birthday" onChange={handleChange} value={form.birthday || ""} placeholder="Informe sua data de nascimento" />
-              </FormGroup>
+              </FormGroup> */}
               <FormGroup>
                 <Label for="password">Password:</Label>
                 <Input disabled={loading} type="password" name="password" id="password" onChange={handleChange} value={form.password || ""} placeholder="Informe sua senha" />

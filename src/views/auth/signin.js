@@ -21,7 +21,10 @@ const SignIn = () => {
   const loading = useSelector(state => state.auth.loading)
 
 
-  const [form, setForm] = useState({})
+  const [form, setForm] = useState({
+    user: 'thiago.cgoncalves@al.infnet.edu.br',
+    password: '123456'
+  })
 
 
   const handleChange = (props) => {
@@ -72,7 +75,7 @@ const SignIn = () => {
               </FormGroup>
 
               <SButton color={isNotValid() || loading ? 'secondary' : 'info'} disabled={isNotValid()} size="sm" block onClick={submitForm}>
-                {loading ? (<><Spinner size="sm" color="light" /> Carregando...</>) : "Enviar"}
+                {loading ? (<><Spinner size="sm" color="light" /> Loading...</>) : "Send"}
               </SButton>
             </Form>
           </CardBody>

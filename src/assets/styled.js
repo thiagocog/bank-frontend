@@ -1,6 +1,19 @@
 import styled from "styled-components"
 
 
+const TitlePage = styled.div`
+    color: #4b8EC7;
+    font-size:22px;
+    margin-bottom: 10px;
+    font-weight:500;
+    border-bottom: 1px dotted #4b8EC7;
+    padding: 5px;
+    display:flex;
+    justify-content: space-between
+`
+
+
+
 const Sign = styled.div`
     display:flex;
     justify-content: center;
@@ -10,5 +23,6 @@ const Sign = styled.div`
 `
 
 export {
-    Sign
+    Sign,
+    TitlePage
 }

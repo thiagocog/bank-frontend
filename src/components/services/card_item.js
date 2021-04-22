@@ -42,13 +42,16 @@ export default CardItem;
 
 const SCard = styled(Card)`
   max-width: 100%;
-  background-color: rgb(206, 59, 87, 0.1);
+  /* background-color: rgb(206, 59, 87, 0.1); */
   color: #42145f;
   margin-top: 20px;
   justify-content: center;
+  /* border: 1px solid rgb(206, 59, 87); */
+  box-shadow: 2px 2px 6px rgba(206, 59, 87,0.3);
 
   :hover {
-    background-color: rgb(206, 59, 87, 0.3);
+    /* background-color: rgb(206, 59, 87, 0.3); */
+    background-color: rgb(206, 59, 87, 0.1);
     transition: 0.4s;
   }
 `;
