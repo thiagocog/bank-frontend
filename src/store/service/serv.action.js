@@ -51,6 +51,7 @@ export const createService = (service) => {
 } 
 
 
+
 export const getDetails = (id_service) => {
   return async (dispatch, getState) => {
     try {

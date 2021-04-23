@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { useParams } from "react-router";
-import { deleteServiceClient } from "../../services/serv.service";
 import { FaTrashAlt } from "react-icons/fa";
 import {
   Button,
@@ -18,8 +16,7 @@ import { deleteSubscription } from "../../store/service/serv.action";
 
 
 
-const List = ({ clients, update }) => {
-  const { id: id_service } = useParams();
+const List = ({ clients }) => {
   const dispatch = useDispatch()
 
   const [modal, setModal] = useState({ 
@@ -57,7 +54,7 @@ const List = ({ clients, update }) => {
             showConfirmButton: false,
             showCloseButton: true,
           });
-          update(true);
+          toggleModal()
         })
         .catch((error) => console.log("an error happened.."));
     }

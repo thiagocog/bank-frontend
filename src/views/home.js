@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { getBankAllServices } from "../services/serv.service";
+import React, { useEffect } from "react";
 import { Row, Col, Container } from "reactstrap";
 import CardItem from "../components/services/card_item";
 import styled from "styled-components";

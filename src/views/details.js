@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router";
-import { getServiceDetails } from "../services/serv.service";
 import { Button, Jumbotron } from "reactstrap";
 import { FaUserPlus, FaRegListAlt } from "react-icons/fa";
 import Loading from "../components/loading/index";
@@ -16,15 +15,13 @@ import { getDetails } from '../store/service/serv.action'
 const Details = (props) => {
   const { id } = useParams();
   const dispatch = useDispatch()
-  const { history } = props;
+  // const { history } = props;
+  // const [isClient, setClient] = useState(true);
 
-  const [loading, setLoading] = useState(false);
-  // const [details, setDetails] = useState({});
-  const [update, setUpdate] = useState(false);
-  const [isClient, setClient] = useState(true);
   const isAdmin = useSelector(state => state.auth.isAdmin)
   const details = useSelector(state => state.service.details)
   const registered = useSelector(state => state.service.details.registered)
+  const loading = useSelector(state => state.service.loading)
 
 
 
@@ -43,9 +40,8 @@ const Details = (props) => {
 
 
   useEffect(() => {
-    dispatch(getDetails(id));
-    setUpdate(false);
-  }, []);
+    dispatch(getDetails(id))
+  }, [dispatch, id]);
 
 
   const detailsService = ({ name, manager, description }) => (
@@ -102,7 +98,7 @@ const Details = (props) => {
   const mountScreen = (details) => (
     <DetailsAll responsive>
       {detailsService(details)}
-      {!isAdmin ? Menu() : <List clients={details.clients} update={setUpdate} />}
+      {!isAdmin ? Menu() : <List clients={details.clients} />}
 
       {/* {isClient ? (
         <Client id={id} update={setUpdate} isForm={setClient} />
