@@ -56,10 +56,10 @@ const FormServices = (props) => {
                 </FormGroup>
                 <FormGroup>
                     <Label for="name">Description</Label>
-                    <Input type="textarea" id="description" value={form.description || ""} onChange={handleChange} name="description" />
+                    <TextArea type="textarea" id="description" value={form.description || ""} onChange={handleChange} name="description" />
                 </FormGroup>
                 <FormGroup>
-                    <Button color="primary" onClick={handleSubmit}>Register</Button>
+                    <Button color="info" onClick={handleSubmit}>Register</Button>
                 </FormGroup>
             </Col>
         </BoxInscricao>
@@ -69,4 +69,9 @@ const FormServices = (props) => {
 
 export default FormServices
 
-const BoxInscricao = styled(Row)``
+const BoxInscricao = styled(Row)`
+`
+
+const TextArea = styled(Input)`
+    height: 150px !important;
+`

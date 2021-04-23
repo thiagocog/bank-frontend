@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useParams } from "react-router";
 import { deleteServiceClient } from "../../services/serv.service";
 import { FaTrashAlt } from "react-icons/fa";
-
 import {
   Button,
   Table,
@@ -13,15 +12,44 @@ import {
 } from "reactstrap";
 import styled from "styled-components";
 import ReactSwal from "../../plugins/swal";
+import { useDispatch } from "react-redux";
+import { deleteSubscription } from "../../store/service/serv.action";
+
+
+
 
 const List = ({ clients, update }) => {
   const { id: id_service } = useParams();
+  const dispatch = useDispatch()
 
-  const [modal, setModal] = useState({ isOpen: false, data: null });
+  const [modal, setModal] = useState({ 
+    isOpen: false, 
+    data: null 
+  });
+
+
+
+  // const deleteClient = () => {
+  //   if (modal.data.id) {
+  //     // deleteServiceClient(id_service, modal.data.id)
+  //     dispatch(deleteClient(modal.data.id))
+  //       .then(() => {
+  //         ReactSwal.fire({
+  //           icon: "success",
+  //           title: `Client ${modal?.data?.client_name?.split()[0]} deleted! `,
+  //           showConfirmButton: false,
+  //           showCloseButton: true,
+  //         });
+  //         update(true);
+  //       })
+  //       .catch((error) => console.log("an error happened.."));
+  //   }
+  // };
 
   const deleteClient = () => {
     if (modal.data.id) {
-      deleteServiceClient(id_service, modal.data.id)
+      // deleteServiceClient(id_service, modal.data.id)
+      dispatch(deleteSubscription(modal.data.id))
         .then(() => {
           ReactSwal.fire({
             icon: "success",
@@ -34,6 +62,7 @@ const List = ({ clients, update }) => {
         .catch((error) => console.log("an error happened.."));
     }
   };
+
 
   const toggleModal = (data = null) => {
     setModal({

@@ -1,8 +1,9 @@
 import React from "react";
+import styled from "styled-components";
 
 const About = () => {
   return (
-    <div className="history">
+    <Box className="history">
       <h2>Our History</h2>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe nobis non
@@ -29,8 +30,14 @@ const About = () => {
         velit nulla ad iusto quas eius a at hic temporibus. Animi harum aut
         ratione ea asperiores.
       </p>
-    </div>
+    </Box>
   );
 };
 
 export default About;
+
+const Box = styled.div`
+  margin-top: 80px;
+  width: 70vw;
+
+`

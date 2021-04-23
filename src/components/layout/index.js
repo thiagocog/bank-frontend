@@ -19,6 +19,6 @@ const Main = styled.main`
   display: flex;
   flex: 1;
   margin-top: 80px;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 `;

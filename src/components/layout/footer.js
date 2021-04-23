@@ -58,7 +58,11 @@ const Sfooter = styled.footer`
   top: 0;
   padding: 11px;
   opacity: 0;
-  animation: slideBack .4s forwards;
+
+  @media (min-width: 1101px) {
+    animation: slideBack .4s forwards;
+  }
+  
 
 
   :hover {

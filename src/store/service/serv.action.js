@@ -1,9 +1,11 @@
 
-import { getBankAllServices, createServService } from '../../services/serv.service';
+import { getBankAllServices, createServService, getServiceDetails, deleteServiceClient } from '../../services/serv.service';
 
 export const TYPES = {
   SERVICE_LOADING: "SERVICE_LOADING",
   SERVICE_ALL: "SERVICE_ALL",
+  SERVICE_CREATE: "SERVICE_CREATE",
+  SERVICE_DETAILS: "SERVICE_DETAILS"
 }
 
 
@@ -27,6 +29,7 @@ export const getServices = () => {
 
 
 
+
 export const createService = (service) => {
 
   return async (dispatch) => {
@@ -35,7 +38,7 @@ export const createService = (service) => {
 
     try {
 
-      const result = await createServService(service)
+      await createServService(service)
       dispatch(getServices())
 
     } catch (error) {
@@ -46,3 +49,50 @@ export const createService = (service) => {
     }
   }
 } 
+
+
+export const getDetails = (id_service) => {
+  return async (dispatch, getState) => {
+    try {
+
+      const { auth } = getState()
+      const res = await getServiceDetails(id_service)
+      res.data.registered = res.data.clients.some(item => item.client_email === auth.client.email)
+      // console.log(res.data);
+
+      dispatch ({
+        type: TYPES.SERVICE_DETAILS,
+        data: res.data
+      })
+      // setDetails(res.data);
+      // setLoading(false);
+      //try error
+    } catch (error) {
+      dispatch({ type: TYPES.SERVICE_LOADING, status: false})
+      console.log("error catch", error);
+      // history.push("/?error=404");
+    }
+  }
+}
+
+
+
+export const deleteSubscription = (id_client) => {
+
+  return async (dispatch, getState) => {
+    const { service } = getState()
+    dispatch({ type: TYPES.SERVICE_LOADING, status: true })
+
+    try {
+      const res = await deleteServiceClient(service.details.id, id_client)
+
+      if (res.status === 200) {
+        dispatch(getDetails(service.details.id))
+      }
+
+    } catch (error) {
+      dispatch({ type: TYPES.SERVICE_LOADING, status: false })
+      console.log(`Aconteceu um erro: Erro ao excluir cliente.`);
+    }
+  }
+}

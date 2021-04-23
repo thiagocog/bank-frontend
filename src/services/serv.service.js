@@ -3,7 +3,6 @@ import http from "../config/http";
 
 const getBankAllServices = () => http.get("/services")
 
-
 const getServiceDetails = (id) => http.get(`/services/${id}`)
 
 const createServiceClient = (id, data) => http.post(`services/${id}/client`, data)

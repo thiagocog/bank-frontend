@@ -10,7 +10,7 @@ import { getServices } from "../store/service/serv.action";
 
 
 const Services = () => {
-
+  
   const dispatch = useDispatch()
   // const [services, setServices] = useState([])
   // const [loading, setLoading] = useState(false)
@@ -36,7 +36,7 @@ const Services = () => {
   return (
     <div>
       <SJumbotron>
-        <div className="jumbo">
+        {/* <div className="jumbo"> */}
           <SContainer>
             <div className="info_bg">
               <div className="text_bg">
@@ -57,7 +57,7 @@ const Services = () => {
             </div>
           </SContainer>
           <Boxes>{loading ? <Loading /> : mappingServices(services)}</Boxes>
-        </div>
+        {/* </div> */}
       </SJumbotron>
     </div>
   );
@@ -71,7 +71,7 @@ const SJumbotron = styled(Row)`
   justify-content: center;
   align-items: center;
   //margin: 30px 0 0 72px; // because footer has 72px
-  margin-top: 20px;
+  margin-top: 40px;
   overflow: hidden;
   @media (max-width: 1059px) {
     margin: 0 auto;
@@ -97,7 +97,7 @@ display: flex;
       text-align: justify;
     }
 
-    .text_bg{
+    .text_bg {
       width: 50%;
       padding: 10px;
     }
