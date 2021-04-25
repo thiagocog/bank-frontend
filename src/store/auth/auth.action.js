@@ -1,11 +1,14 @@
+// AUTH ACTION
+
 import { removeToken, saveAuth } from "../../config/auth";
-import { authService, registerUserService } from "../../services/auth.service";
+import { authService, registerUserService, getBankAllUsers } from "../../services/auth.service";
 import history from '../../config/history';
 import http from '../../config/http';
 
 
 
 export const TYPES = {
+  SIGN_ALL: "USERS_ALL",
   SIGN_IN: "SIGN_IN",
   SIGN_UP: "SIGN_UP",
   SIGN_OUT: "SIGN_OUT",
@@ -57,6 +60,27 @@ export const signUpAction = (data) => {
       }, 5000)
     } catch (error) {
       dispatch({ type: TYPES.SIGN_ERROR, data: error })
+    }
+  }
+}
+
+
+
+export const getAllUsers = () => {
+  return async (dispatch) => {
+    // carregar o loading antes de chamar o serviço
+    dispatch({ type: TYPES.SIGN_LOADING, status: true })
+
+    try {
+      const allUsers = await getBankAllUsers()
+      // console.log(allUsers);
+      dispatch({
+        type: TYPES.SIGN_ALL,
+        data: allUsers
+      })
+    } catch (error) {
+      dispatch({ type: TYPES.SIGN_LOADING, status: false })
+      console.log('ERRO AO BUSCAR OS USUÁRIOS (GETALLUSERS)')
     }
   }
 }

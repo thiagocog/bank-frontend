@@ -1,4 +1,4 @@
-
+// CONFIG AUTH
 
 const TOKEN_KEY = 'auth_bank'
 
@@ -18,6 +18,7 @@ const getClient = () => {
   }
   return false
 }
+
 
 const isAuthenticated = () => {
   return getToken() !== false

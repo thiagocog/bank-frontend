@@ -1,3 +1,5 @@
+// STORE INDEX
+
 //import as libs
 import { applyMiddleware, combineReducers, createStore } from "redux"
 import { composeWithDevTools } from "redux-devtools-extension"

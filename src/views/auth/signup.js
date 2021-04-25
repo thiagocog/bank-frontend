@@ -31,6 +31,7 @@ const SignUp = () => {
         ...form,
         [name]: value,
     });
+    console.log(form)
   };
 
   const closeError = () => setHasError(false);
@@ -52,7 +53,7 @@ const SignUp = () => {
 
   const isNotValid = () => {
     // const inputs = ['name', 'birthday', 'email', 'password']
-    const inputs = ['name', 'email', 'password']
+    const inputs = ['name', 'email', 'password', 'type']
     const invalid = (label) => !Object.keys(form).includes(label) || form[label].length === 0
     return inputs.some(item => invalid(item))
   }
@@ -92,14 +93,20 @@ const SignUp = () => {
                 <Label for="email">E-mail:</Label>
                 <Input disabled={loading} type="email" name="email" id="email" onChange={handleChange} value={form.email || ""} placeholder="Informe seu E-mail" />
               </FormGroup>
-              {/* <FormGroup>
-                <Label for="birthday">Birth date:</Label>
-                <Input disabled={loading} type="date" name="birthday" id="birthday" onChange={handleChange} value={form.birthday || ""} placeholder="Informe sua data de nascimento" />
-              </FormGroup> */}
               <FormGroup>
                 <Label for="password">Password:</Label>
                 <Input disabled={loading} type="password" name="password" id="password" onChange={handleChange} value={form.password || ""} placeholder="Informe sua senha" />
               </FormGroup>
+              <SFormGroup className="radio-input">
+                <div>
+                  <Label for="type">Client</Label>
+                  <Input disabled={loading} type="radio" name="type" id="type-client" onChange={handleChange} value='2' />
+                </div>
+                <div>
+                  <Label for="type">Administrator</Label>
+                  <Input disabled={loading} type="radio" name="type" id="type-client" onChange={handleChange} value='1' />
+                </div>
+              </SFormGroup>
               <Button color={isNotValid() || loading ? 'secondary' : 'info'} disabled={isNotValid()} size="sm" block onClick={submitForm}>
                   {loading ? (<><Spinner size="sm" color="light" /> Loading...</>) : "Register"}
               </Button>
@@ -118,4 +125,14 @@ export default SignUp
 
 const SCardHeader = styled(CardHeader)`
   background-color: rgb(206, 59, 87, 0.1);
+`
+
+const SFormGroup = styled(FormGroup)`
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-around;
+
+  div {
+    display: flex;
+  }
 `

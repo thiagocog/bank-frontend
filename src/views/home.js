@@ -1,3 +1,5 @@
+// VIEW HOME
+
 import React, { useEffect } from "react";
 import { Row, Col, Container } from "reactstrap";
 import CardItem from "../components/services/card_item";

@@ -131,10 +131,11 @@ const Sfooter = styled.footer`
       padding: 0px 10px;
     }
   }
-`;
+`
+
 
 const SVscTriangleRight = styled(VscTriangleRight)`
-  position: absolute;
+  position: fixed;
   z-index: 1;
   left: 6px;
   top: 380px;

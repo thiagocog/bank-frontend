@@ -4,6 +4,7 @@ import { getToken, getClient } from "../../config/auth"
 
 
 const INITIAL_STATE = {
+  all: [],
   isAdmin: getClient().type === '1' || false,
   loading: false,
   token: getToken() || "",
@@ -44,12 +45,15 @@ const reducer = (state = INITIAL_STATE, action) => {
       state.isAdmin = false
       state.error = []
       return state
+    case TYPES.SIGN_ALL:
+      state.all = action.data
+      state.error = []
+      state.loading = false
+      return state
     default:
       return state;
   }
 }
-
-
 
 
 export default reducer

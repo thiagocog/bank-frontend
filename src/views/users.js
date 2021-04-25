@@ -3,19 +3,42 @@ import { TitlePage } from '../assets/styled'
 import { Button, Table, Row, Col } from 'reactstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { getServices } from '../store/service/serv.action';
+import { getAllUsers } from '../store/auth/auth.action';
 import styled from 'styled-components';
 
 
 const Users = () => {
 
     const dispatch = useDispatch()
-    const services = useSelector(state => state.service.all)
+    // const services = useSelector(state => state.service.all)
+    const users = useSelector(state => state.auth.all)
+    console.log(users);
+
+
+    // useEffect(() => {
+    //     dispatch(getServices());
+    // }, [dispatch])
 
 
 
     useEffect(() => {
-        dispatch(getServices());
+        dispatch(getAllUsers());
     }, [dispatch])
+
+
+
+    const wAuthorization = () => {
+        const newAuth = users.map(item => {
+            if (item.type === '1') {
+                return'Administrator'
+            } else {
+                return 'Client'
+            }
+        })
+        return newAuth
+    }
+    const AuthorizationTypes = wAuthorization()
+    console.log(AuthorizationTypes)
 
 
     return (
@@ -28,17 +51,24 @@ const Users = () => {
                 <STable>
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>SERVICE</th>
-                            <th>MANAGER</th>
+                            <th>NAME</th>
+                            <th>EMAIL</th>
+                            <th>AUTHORIZATION</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {services?.map((service, i) => (
+                        {/* {users?.map((service, i) => (
                             <tr key={i}>
-                                <td>{service.id}</td>
                                 <td>{service.name}</td>
-                                <td>{service.manager}</td>
+                                <td>{service.email}</td>
+                                <td>{service.type}</td>
+                            </tr>
+                        ))} */}
+                        {users?.map((service, i) => (
+                            <tr key={i}>
+                                <td>{service.name}</td>
+                                <td>{service.email}</td>
+                                <td>{AuthorizationTypes[i]}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -59,6 +89,7 @@ const STitlePage = styled(TitlePage)`
     display: flex;
     margin-bottom: 30px;
     padding: 15px 10px;
+    font-family: "Montserrat", serif;
 `
 
 const SRow = styled(Row)`
@@ -90,7 +121,7 @@ const STable = styled(Table)`
     tbody {
         td:nth-child(1) {
             text-align: left;
-            font-weight: bold;
+            /* font-weight: bold; */
         }
         td:nth-child(2) {
             text-align: center;

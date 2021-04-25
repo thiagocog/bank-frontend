@@ -11,7 +11,8 @@ import { TitlePage } from '../assets/styled';
 const Profile = () => {
 
     const profile = useSelector(state => state.auth.client)
-    console.log(profile);
+    // console.log(profile);
+    const loading = useSelector(state => state.auth.loading)
 
     const [form, Serform] = useState({ ...profile })
 
@@ -31,6 +32,13 @@ const Profile = () => {
         }
         console.log(nform);
     }
+
+    const isNotValid = () => {
+        // const inputs = ['name', 'birthday', 'email', 'password']
+        const inputs = ['name', 'email', 'birthday']
+        const invalid = (label) => !Object.keys(form).includes(label) || form[label].length === 0
+        return inputs.some(item => invalid(item))
+      }
 
    
     return (
@@ -62,7 +70,7 @@ const Profile = () => {
                                 <SInput type="date" name="birthday" id="birthday" value={form.birthday || ""} onChange={handleChange} />
                             </FormGroup>
                             <FormGroup>
-                                <SButton color="info" onClick={updateForm}>Update</SButton>
+                                <SButton disabled={isNotValid()} color={isNotValid() || loading ? 'secondary' : 'info'} onClick={updateForm}>Update</SButton>
                             </FormGroup>
                         </CardBody>
                     </Card>
@@ -112,9 +120,9 @@ const SCardHeader = styled(CardHeader)`
 
 const STitlePage = styled(TitlePage)`
     /* width: 80%; */
-    margin: 60px 0 50px;
+    margin: 60px 0 30px;
     padding: 15px 10px;
-
+   font-family: "Montserrat", serif;
 `
 
 const SRow = styled(Row)`

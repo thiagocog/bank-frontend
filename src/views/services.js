@@ -44,6 +44,7 @@ const STitlePage = styled(TitlePage)`
     display: flex;
     margin-bottom: 30px;
     padding: 15px 10px;
+    font-family: "Montserrat", serif;
 `
 
 const SRow = styled(Row)`
