@@ -38,7 +38,7 @@ const Users = () => {
         return newAuth
     }
     const AuthorizationTypes = wAuthorization()
-    console.log(AuthorizationTypes)
+    // console.log(AuthorizationTypes)
 
 
     return (

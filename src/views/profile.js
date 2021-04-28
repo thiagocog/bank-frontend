@@ -30,7 +30,7 @@ const Profile = () => {
             name: form.name.toUpperCase(),
             email: form.email.toLowerCase()
         }
-        console.log(nform);
+        console.log('########', nform);
     }
 
     const isNotValid = () => {

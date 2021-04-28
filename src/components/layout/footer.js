@@ -114,6 +114,7 @@ const Sfooter = styled.footer`
     justify-content: center;
     align-items: center;
     opacity: 1;
+    margin-top: 40px;
 
     :hover {
       animation: none;

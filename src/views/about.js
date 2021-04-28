@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { TitlePage } from '../assets/styled';
+
 
 const About = () => {
   return (
     <Box className="history">
-      <h2>Our History</h2>
+      <STitlePage>Our History</STitlePage>
+      {/* <h2>Our History</h2> */}
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe nobis non
         possimus illum officia minus? Debitis enim perspiciatis rerum quibusdam
@@ -37,7 +40,12 @@ const About = () => {
 export default About;
 
 const Box = styled.div`
-  margin-top: 80px;
   width: 70vw;
 
+`
+const STitlePage = styled(TitlePage)`
+    /* width: 80%; */
+    margin: 60px 0 40px;
+    padding: 15px 10px;
+   font-family: "Montserrat", serif;
 `

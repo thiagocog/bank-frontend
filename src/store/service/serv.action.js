@@ -1,5 +1,12 @@
 
-import { getBankAllServices, createServService, getServiceDetails, deleteServiceClient } from '../../services/serv.service';
+import { 
+  getBankAllServices, 
+  createServService, 
+  getServiceDetails, 
+  deleteServiceClient,
+  updateService,
+  removeService
+} from '../../services/serv.service';
 
 export const TYPES = {
   SERVICE_LOADING: "SERVICE_LOADING",
@@ -28,8 +35,6 @@ export const getServices = () => {
 }
 
 
-
-
 export const createService = (service) => {
 
   return async (dispatch) => {
@@ -50,6 +55,44 @@ export const createService = (service) => {
   }
 } 
 
+
+export const serviceUpdate = ({ id, manager, name, description }) => {
+  return async (dispatch) => {
+    dispatch({ type: TYPES.SERVICE_LOADING, status: true })
+
+    try {
+
+      const data = { manager, name, description }
+      await updateService(id, data)
+      dispatch(getServices())
+      
+    } catch (error) {
+
+      dispatch({ type: TYPES.COURSE_LOADING, status: false })
+      console.log('aconteceu um ERRO": Erro ao EDITAR SERVIÇO')
+
+    }
+  }
+}
+
+
+export const serviceRemove = (id_service) => {
+  return async (dispatch) => {
+    dispatch({ type: TYPES.SERVICE_LOADING, status: true })
+
+    try {
+
+      await removeService(id_service)
+      dispatch(getServices())
+
+    } catch (error) {
+
+      dispatch({ type: TYPES.COURSE_LOADING, status: false })
+      console.log('aconteceu um ERRO": Erro ao Excluir curso')
+
+    }
+  }
+}
 
 
 export const getDetails = (id_service) => {
@@ -75,7 +118,6 @@ export const getDetails = (id_service) => {
     }
   }
 }
-
 
 
 export const deleteSubscription = (id_client) => {

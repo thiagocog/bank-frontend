@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink as RRDNavLink } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Collapse,
   Navbar,
@@ -12,10 +13,12 @@ import {
   Tooltip,
   NavbarText, UncontrolledDropdown, DropdownItem, DropdownToggle, DropdownMenu
 } from "reactstrap";
+import { MdPermIdentity } from "react-icons/md"
+
+// importações locais
 import styled from "styled-components";
 import { isAuthenticated } from "../../config/auth";
 import { logoutAction } from "../../store/auth/auth.action";
-import { useSelector, useDispatch } from 'react-redux';
 import history from '../../config/history'
 
 
@@ -95,24 +98,24 @@ const Header = () => {
                   </SNavLink>
                 </NavItem>
               </Nav>
-            </SCollapse>
-            <SNav>
-            {isAuthenticated() ? (
-              <UncontrolledDropdown nav inNavbar>
-                <SDropdownToggle nav caret>
-                  <strong className="profile">{officialName}</strong>
-                </SDropdownToggle>
-                <DropdownMenu>
-                {isAdmin ? (
-                  <DropdownItem onClick={() => history.push('/users')}>Users</DropdownItem>
+              <SNav>
+                {isAuthenticated() ? (
+                  <UncontrolledDropdown nav inNavbar>
+                    <SDropdownToggle nav caret>
+                      <SMdPermIdentity /><strong className="profile">{officialName}</strong>
+                    </SDropdownToggle>
+                    <DropdownMenu>
+                    {isAdmin ? (
+                      <DropdownItem onClick={() => history.push('/users')}>Users</DropdownItem>
+                    ) : ""}
+                      <DropdownItem onClick={() => history.push('/profile')}>Profile</DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem onClick={logout}>Logout</DropdownItem>
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
                 ) : ""}
-                  <DropdownItem onClick={() => history.push('/profile')}>Profile</DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem onClick={logout}>Logout</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            ) : ""}
             </SNav>
+            </SCollapse>
           </Container>
         <SNavbarText>
           <h6>Think Different!</h6>
@@ -122,7 +125,12 @@ const Header = () => {
   );
 };
 
+
 export default Header;
+
+
+
+// ESTILIZAÇÃO DOS COMPONENTES
 
 const SNavbar = styled(Navbar)`
   display: flex;
@@ -225,7 +233,35 @@ const SDropdownToggle = styled(DropdownToggle)`
   display: flex;
   align-items: center;
   letter-spacing: 0.4px;
+  margin-right: 1rem;
+
+  @media (max-width: 575px) {
+      margin-bottom: 14px;
+    }
+
+  .profile {
+    font-family: "Montserrat", serif;
+    font-size: 1rem !important;
+
+    @media (max-width: 575px) {
+      margin-left: 1rem;
+      text-transform: uppercase;
+      font-size: 18px !important;
+    }
+  }
+
 `
+
+const SMdPermIdentity = styled(MdPermIdentity) `
+  margin-right: 6px;
+
+  @media (max-width: 575px) {
+    display: none;
+  }
+
+`
+
+
 const SNav = styled(Nav)`
   /* background-color: #62145f */
 `

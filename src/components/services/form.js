@@ -6,9 +6,8 @@ import { createService } from '../../store/service/serv.action';
 import ReactSwal from '../../plugins/swal';
 
 
-const FormServices = (props) => {
-    const [form, setForm] = useState({})
-    const dispatch = useDispatch()
+const FormServices = ({ state }) => {
+    const [form, setForm] = state
 
     const handleChange = (e) => {
         setForm({
@@ -25,20 +24,20 @@ const FormServices = (props) => {
 
     const handleSubmit = () => {
         
-        dispatch(createService(form))
+    //     dispatch(createService(form))
 
-        ReactSwal.fire({
-            icon: 'success',
-            title: `Service ${form.name} cadastrado com sucesso !`,
-            showConfirmButton: false,
-            showCloseButton: true,
-            timer: 4000,
-        })
-        setForm({});
+    //     ReactSwal.fire({
+    //         icon: 'success',
+    //         title: `Service ${form.name} cadastrado com sucesso !`,
+    //         showConfirmButton: false,
+    //         showCloseButton: true,
+    //         timer: 4000,
+    //     })
+    //     setForm({});
 
-        setTimeout(() => {
-            props.setIsForm(false)
-        }, 4000);
+    //     setTimeout(() => {
+    //         props.setIsForm(false)
+    //     }, 4000);
     }
 
 
