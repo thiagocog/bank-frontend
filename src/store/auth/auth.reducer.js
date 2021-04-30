@@ -26,6 +26,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       state.client = action.data.user
       state.isAdmin = action.data.user.type === '1'
       state.loading = false
+      state.error = []
       return state
     case TYPES.SIGN_UP: 
       state.registered = true
@@ -33,6 +34,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       state.client = action.data.user
       state.isAdmin = action.data.user.type === '1'
       state.loading = false
+      state.error = []
       return state
     case TYPES.SIGN_ERROR: 
       const err = [...state.error, action.data]

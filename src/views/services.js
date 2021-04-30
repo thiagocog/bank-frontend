@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ReactSwal from '../plugins/swal';
 import styled from 'styled-components';
 
+
 // Importações internas
 import { getServices, getDetails, createService, serviceUpdate, serviceRemove } from "../store/service/serv.action";
 import TableList from '../components/services/tableList';
@@ -27,7 +28,13 @@ const ManageServices = () => {
     const details = useSelector(state => state.service.details)
 
     // functions
-    const toggle = () => setModal(!modal)
+    const toggle = (hasEvent) => {  //----- Onde é passado esse evento?
+        if (hasEvent) {
+            setUpdate(false)
+            setForm({})
+        }
+        setModal(!modal)
+    }
 
     useEffect(() => {
         dispatch(getServices());
@@ -43,7 +50,7 @@ const ManageServices = () => {
             })
     }
 
-    
+
     const deleteTable = (service) => {
 
         ReactSwal.fire({
@@ -66,8 +73,8 @@ const ManageServices = () => {
                         })
                 }
             })
-
     }
+
 
     const submitForm = () => {
         dispatch(isUpdate ? serviceUpdate(form) : createService(form))
@@ -103,17 +110,16 @@ const ManageServices = () => {
 
                 <TableList services={services} editService={editTable} deleteService={deleteTable} />
 
-
+                {/* MODAL */}
                 <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>
                     {isUpdate ? "Update" : "Register"} service
-
                 </ModalHeader>
                 <ModalBody>
                     <FormService state={stateForm} />
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={submitForm}>
+                    <Button color="info" onClick={submitForm}>
                         {isUpdate ? "Update" : "Register"}
                     </Button>
                 </ModalFooter>

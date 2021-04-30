@@ -86,10 +86,10 @@ const List = ({ clients }) => {
               {clients &&
                 clients.map((v, i) => (
                   <TableTr key={i}>
-                    <td>{v.client_name}</td>
-                    <td>{v.client_email}</td>
-                    <td>{v.client_address}</td>
-                    <td>£ {v.value} </td>
+                    <td>{v.user.name}</td>
+                    <td>{v.user.email}</td>
+                    {/* <td>{v.user.address}</td> */}
+                    {/* <td>£ {v.value} </td> */}
                     <td>
                       <Button
                         size="sm"

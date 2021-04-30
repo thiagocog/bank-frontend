@@ -31,7 +31,6 @@ const SignUp = () => {
         ...form,
         [name]: value,
     });
-    console.log(form)
   };
 
   const closeError = () => setHasError(false);

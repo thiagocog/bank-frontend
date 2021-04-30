@@ -101,8 +101,8 @@ export const getDetails = (id_service) => {
 
       const { auth } = getState()
       const res = await getServiceDetails(id_service)
-      res.data.registered = res.data.clients.some(item => item.client_email === auth.client.email)
-      // console.log(res.data);
+      res.data.registered = res.data.clients.some(item => item.user.email === auth.client.email)
+      console.log(res.data);
 
       dispatch ({
         type: TYPES.SERVICE_DETAILS,
