@@ -74,7 +74,7 @@ const SignUp = () => {
       <Col sm={12} md={8} lg={5}>
         <Alert color="success" isOpen={success} toggle={() => showSuccess(!success)}>
           <div><strong>Usuario</strong> cadastrado com sucesso.</div>
-          <small>Você será redirecionado em 5s</small>
+          <small>Você será redirecionado em 5 segundos</small>
         </Alert>
         <Alert color="danger" isOpen={hasError} toggle={closeError}>
           <div><strong>OPS! </strong> Aconteceu um erro.</div>
@@ -103,7 +103,7 @@ const SignUp = () => {
                 </div>
                 <div>
                   <Label for="type">Administrator</Label>
-                  <Input disabled={loading} type="radio" name="type" id="type-client" onChange={handleChange} value='1' />
+                  <Input disabled={loading} type="radio" name="type" id="type-admin" onChange={handleChange} value='1' />
                 </div>
               </SFormGroup>
               <Button color={isNotValid() || loading ? 'secondary' : 'info'} disabled={isNotValid()} size="sm" block onClick={submitForm}>

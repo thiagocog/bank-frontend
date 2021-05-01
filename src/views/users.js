@@ -42,6 +42,7 @@ const Users = () => {
                             <th>NAME</th>
                             <th>EMAIL</th>
                             {/* <th>AUTHORIZATION</th> */}
+                            <th>NUMBER OF PROPOSALS</th>
                             <th>PROPOSALS</th>
                         </tr>
                     </thead>
@@ -50,7 +51,8 @@ const Users = () => {
                             <tr key={i}>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td>{user.client_subscribe.length > 0 ? <div onClick={() => toggle(user)} style={{cursor: 'pointer'}}><VscListFilter/></div> : "" } </td>
+                                <td>{user.clients.length}</td>
+                                <td>{user.clients.length > 0 ? <div onClick={() => toggle(user)} style={{cursor: 'pointer'}}><VscListFilter/></div> : "" } </td>
                             </tr>
                         ))}
                     </tbody>
@@ -64,7 +66,7 @@ const Users = () => {
             <ModalBody>
                 <Table>
                     <tbody>
-                        {modal.data?.client_subscribe?.map((v, i) => (
+                        {modal.data?.clients?.map((v, i) => (
                             <tr key={i}>
                                 <td>{i + 1}</td>
                                 <td>{v.service}</td>

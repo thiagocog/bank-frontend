@@ -8,6 +8,8 @@ import Client from "../components/clientService/index";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetails } from '../store/service/serv.action'
+import ReactSwal from "../plugins/swal";
+import { createSubscription, removeSubscription } from "../store/client/client.action";
 
 
 
@@ -15,28 +17,41 @@ import { getDetails } from '../store/service/serv.action'
 const Details = (props) => {
   const { id } = useParams();
   const dispatch = useDispatch()
-  // const { history } = props;
-  // const [isClient, setClient] = useState(true);
 
   const isAdmin = useSelector(state => state.auth.isAdmin)
   const details = useSelector(state => state.service.details)
   const registered = useSelector(state => state.service.details.registered)
   const loading = useSelector(state => state.service.loading)
+  const subscriptions = useSelector(state => state.service.details.clients)
 
 
+  const toggleSubscription = () => {
 
-  // const getDetails = useCallback(async () => {
-  //   try {
-  //     setLoading(true);
-  //     const res = await getServiceDetails(id);
-  //     setDetails(res.data);
-  //     setLoading(false);
-  //     //try error
-  //   } catch (error) {
-  //     console.log("error catch", error);
-  //     history.push("/?error=404");
-  //   }
-  // }, [id, history]); //something wrong
+    if (registered) {
+      dispatch(removeSubscription(id, subscriptions[0].id))
+        .then(() => {
+          ReactSwal.fire({
+            icon: 'success',
+            title: `Cliente removido do serviço`,
+            showConfirmButton: false,
+            showCloseButton: true,
+          })
+        })
+        .catch(erro => console.log(`Erro ao remover inscrição no serviço`))
+
+    } else {
+      dispatch(createSubscription(id))
+        .then(() => {
+          ReactSwal.fire({
+            icon: 'success',
+            title: `Cliente cadastrado com sucesso!`,
+            showConfirmButton: false,
+            showCloseButton: true,
+          })
+        })
+        .catch(erro => console.log(`Erro ao realizar a inscrição no serviço`))
+    }
+  }
 
 
   useEffect(() => {
@@ -59,25 +74,13 @@ const Details = (props) => {
 
   const Menu = () => (
     <Navbar expand="md mb-4">
-      {/* <div className="info_button">
-        {!registered ? "Make your proposal: " : "Cancel your proposal:"}
-      </div> */}
       <SButton
-        onClick={() => {}}
+        onClick={toggleSubscription}
         color={registered ? "danger" : "info"}
         size="md"
       >
-        {!registered ? "Do your proposal " : "Cancel your proposal"} 
+        {!registered ? (<><FaUserPlus/>Do your proposal</>) : "Cancel your proposal"} 
 
-        {/* (
-          <>
-            <FaUserPlus />
-          </>
-        ) : (
-          <>
-            <FaRegListAlt />
-          </>
-        ) */}
       </SButton>
     </Navbar>
   );
