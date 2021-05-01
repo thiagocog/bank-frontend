@@ -1,74 +1,56 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { TitlePage } from '../assets/styled'
-import { Button, Table, Row, Col } from 'reactstrap'
+import { Button, Table, Row, Col, Modal, ModalHeader, ModalBody } from 'reactstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { getServices } from '../store/service/serv.action';
 import { getAllUsers } from '../store/auth/auth.action';
+import { getClientAll } from '../store/client/client.action'
 import styled from 'styled-components';
+import { VscListFilter } from 'react-icons/vsc'
+
 
 
 const Users = () => {
 
     const dispatch = useDispatch()
-    // const services = useSelector(state => state.service.all)
-    const users = useSelector(state => state.auth.all)
-    console.log(users);
+    const users = useSelector(state => state.client.all)
+    const [modal, setModal] = useState({
+        status: false,
+        data: {}
+    });
 
-
-    // useEffect(() => {
-    //     dispatch(getServices());
-    // }, [dispatch])
-
-
+    const toggle = (data = {}) => setModal({
+        status: !modal.status,
+        data: data
+    })
 
     useEffect(() => {
-        dispatch(getAllUsers());
+        dispatch(getClientAll());
     }, [dispatch])
 
 
 
-    const wAuthorization = () => {
-        const newAuth = users.map(item => {
-            if (item.type === '1') {
-                return'Administrator'
-            } else {
-                return 'Client'
-            }
-        })
-        return newAuth
-    }
-    const AuthorizationTypes = wAuthorization()
-    // console.log(AuthorizationTypes)
-
-
     return (
+
+    <>
         <SRow>
             <SCol>
-                <STitlePage>
-                    Users
-                  <SButton size="sm" color="info">Cadastrar</SButton>
-                </STitlePage>
+                <STitlePage>Users</STitlePage>
                 <STable>
                     <thead>
                         <tr>
                             <th>NAME</th>
                             <th>EMAIL</th>
-                            <th>AUTHORIZATION</th>
+                            {/* <th>AUTHORIZATION</th> */}
+                            <th>PROPOSALS</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {users?.map((service, i) => (
+                        {users?.map((user, i) => (
                             <tr key={i}>
-                                <td>{service.name}</td>
-                                <td>{service.email}</td>
-                                <td>{service.type}</td>
-                            </tr>
-                        ))} */}
-                        {users?.map((service, i) => (
-                            <tr key={i}>
-                                <td>{service.name}</td>
-                                <td>{service.email}</td>
-                                <td>{AuthorizationTypes[i]}</td>
+                                <td>{user.name}</td>
+                                <td>{user.email}</td>
+                                <td>{user.client_subscribe.length > 0 ? <div onClick={() => toggle(user)} style={{cursor: 'pointer'}}><VscListFilter/></div> : "" } </td>
                             </tr>
                         ))}
                     </tbody>
@@ -76,8 +58,27 @@ const Users = () => {
             </SCol>
         </SRow>
 
+
+        <Modal isOpen={modal.status} toggle={toggle} >
+            <ModalHeader toggle={toggle}>Services List</ModalHeader>
+            <ModalBody>
+                <Table>
+                    <tbody>
+                        {modal.data?.client_subscribe?.map((v, i) => (
+                            <tr key={i}>
+                                <td>{i + 1}</td>
+                                <td>{v.service}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </ModalBody>
+        </Modal>
+    </>                    
+
     )
 }
+
 
 export default Users
 
@@ -133,3 +134,50 @@ const STable = styled(Table)`
     }
    
 `
+
+
+
+
+
+
+    // const services = useSelector(state => state.service.all)
+    // const users = useSelector(state => state.auth.all)
+    // console.log(users);
+
+
+    // useEffect(() => {
+    //     dispatch(getServices());
+    // }, [dispatch])
+
+
+
+    // FUNÇÃO PARA DETERMINAR O TIPO DE AUTORIZAÇÃO DO USUÁRIO (SE ADMIN OU CLIENT)
+    // const wAuthorization = () => {
+    //     const newAuth = users.map(item => {
+    //         if (item.type === '1') {
+    //             return'Admin'
+    //         } else {
+    //             return 'Client'
+    //         }
+    //     })
+    //     return newAuth
+    // }
+    // const AuthorizationTypes = wAuthorization()
+    // // console.log(AuthorizationTypes)
+
+
+
+    {/* {users?.map((service, i) => (
+        <tr key={i}>
+            <td>{service.name}</td>
+            <td>{service.email}</td>
+            <td>{service.type}</td>
+        </tr>
+    ))} */}
+    {/* {users?.map((service, i) => (
+        <tr key={i}>
+            <td>{service.name}</td>
+            <td>{service.email}</td>
+            <td>{AuthorizationTypes[i]}</td>
+        </tr>
+    ))} */}

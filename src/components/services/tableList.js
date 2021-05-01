@@ -1,6 +1,7 @@
 import { Table } from 'reactstrap'
 import styled from 'styled-components'
 import { BiTrash, BiEdit } from 'react-icons/bi'
+import { Link } from 'react-router-dom'
 
 
 
@@ -10,26 +11,26 @@ const TableList = (props) => {
 
     return (
         
-        <STable>
+        <STable responsive striped size="sm">
             <thead>
-                <tr>
-                    <th>ID</th>
+                <TableTr>
                     <th>SERVICE</th>
+                    <th>CUSTOMERS</th>
                     <th>MANAGER</th>
-                    <th></th>
-                </tr>
+                    <th>ACTIONS</th>
+                </TableTr>
             </thead>
             <tbody>
                 {services?.map((service, i) => (
-                    <tr key={i}>
-                        <td>{service.id}</td>
-                        <td>{service.name}</td>
+                    <TableTr key={i}>
+                        <td><Link to={`/details/${service.id}`}>{service.name}</Link></td>
+                        <td>{service.subscribes}</td>
                         <td>{service.manager}</td>
                         <td>
                             <BiEdit style={{ cursor: "pointer" }} className="text-primary mr-1 font-weight-normal" onClick={() => editService(service.id)} />
                             <BiTrash style={{ cursor: "pointer" }} className="text-danger font-weight-normal" onClick={() => deleteService(service)} />
                         </td>
-                    </tr>
+                    </TableTr>
                 ))}
             </tbody>
         </STable>
@@ -42,6 +43,13 @@ export default TableList;
 
 
 const STable = styled(Table)`
+
+    overflow: hidden;
+    border-radius: 6px;
+    font-family: "Roboto", sans-serif !important;
+    margin-bottom: 80px;
+
+
     /* thead {
         th:nth-child(1) {
             text-align: left;
@@ -68,4 +76,16 @@ const STable = styled(Table)`
         }
     } */
    
+`
+
+const TableTr = styled.tr`
+
+    th {
+        background-color: rgb(206, 59, 87, 0.2);
+        padding: 10px;
+    }
+    td {
+        vertical-align: middle;
+        padding: 10px;
+    }
 `

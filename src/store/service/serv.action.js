@@ -96,25 +96,22 @@ export const serviceRemove = (id_service) => {
 
 
 export const getDetails = (id_service) => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
 
-      const { auth } = getState()
       const res = await getServiceDetails(id_service)
-      res.data.registered = res.data.clients.some(item => item.user.email === auth.client.email)
-      console.log(res.data);
+      console.log(res)
+      res.data.registered = res.data.clients.length > 0;
+      console.log(res.data.registered)
 
       dispatch ({
         type: TYPES.SERVICE_DETAILS,
         data: res.data
       })
-      // setDetails(res.data);
-      // setLoading(false);
-      //try error
+      
     } catch (error) {
       dispatch({ type: TYPES.SERVICE_LOADING, status: false})
-      console.log("error catch", error);
-      // history.push("/?error=404");
+      console.log("ERRO AO DETALHAR O CURSO (GETDETAILS)", error);
     }
   }
 }

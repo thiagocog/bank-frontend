@@ -8,10 +8,12 @@ import thunk from 'redux-thunk'
 // importação dos reducers
 import SignReducer from "./auth/auth.reducer"
 import ServiceReducer from "./service/serv.reducer.js"
+import ClientReducer from "./client/client.reducer"
 
 const reducers = combineReducers({
     auth: SignReducer,
     service: ServiceReducer,
+    client: ClientReducer
 })
 
 // middlewares de redux

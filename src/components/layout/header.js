@@ -83,9 +83,14 @@ const Header = () => {
                   </SNavLink>
                 </NavItem>
                 {isAdmin ? (
-                  <NavItem>
+                  <>
+                    <NavItem>
                       <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/services">Services</SNavLink>
-                  </NavItem>
+                    </NavItem>
+                    <NavItem>
+                      <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/users">Users</SNavLink>
+                    </NavItem>
+                  </>
                 ) : ""}
                 <NavItem>
                   <SNavLink
@@ -105,9 +110,6 @@ const Header = () => {
                       <SMdPermIdentity /><strong className="profile">{officialName}</strong>
                     </SDropdownToggle>
                     <DropdownMenu>
-                    {isAdmin ? (
-                      <DropdownItem onClick={() => history.push('/users')}>Users</DropdownItem>
-                    ) : ""}
                       <DropdownItem onClick={() => history.push('/profile')}>Profile</DropdownItem>
                       <DropdownItem divider />
                       <DropdownItem onClick={logout}>Logout</DropdownItem>

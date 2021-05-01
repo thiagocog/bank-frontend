@@ -77,9 +77,9 @@ const List = ({ clients }) => {
               <TableTr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Adress</th>
+                {/* <th>Adress</th> */}
                 <th>Amount</th>
-                <th>Action</th>
+                {/* <th>Action</th> */}
               </TableTr>
             </thead>
             <tbody>
@@ -89,8 +89,8 @@ const List = ({ clients }) => {
                     <td>{v.user.name}</td>
                     <td>{v.user.email}</td>
                     {/* <td>{v.user.address}</td> */}
-                    {/* <td>£ {v.value} </td> */}
-                    <td>
+                    <td>£ {v.user.value} </td>
+                    {/* <td>
                       <Button
                         size="sm"
                         color="link"
@@ -99,7 +99,7 @@ const List = ({ clients }) => {
                       >
                         <FaTrashAlt />
                       </Button>
-                    </td>
+                    </td> */}
                   </TableTr>
                 ))}
             </tbody>
@@ -141,6 +141,7 @@ const STable = styled(Table)`
 
 const TableTr = styled.tr`
   th {
+    padding: 10px !important;
     background-color: rgb(206, 59, 87, 0.2);
     :nth-child(n) {
       min-width: 200px;
@@ -162,6 +163,7 @@ const TableTr = styled.tr`
     }
   }
   td {
+    padding: 10px !important;
     vertical-align: middle;
     :nth-child(1) {
       text-transform: uppercase;
