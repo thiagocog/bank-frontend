@@ -55,6 +55,8 @@ const SignIn = () => {
     <Sign>
       <Col sm={12} md={8} lg={5}>
 
+        <Title>Welcome to TechnoBank</Title>
+
         <Alert color="danger" isOpen={hasError} toggle={closeError}>
           <div><strong>OPS! </strong>Aconteceu um erro.</div>
           <small>Verifique o usuário e a senha.</small>
@@ -99,4 +101,10 @@ const SButton = styled(Button)`
   .btn-info {
     background-color: rgb(206, 59, 87, 0.1);
   }
+`
+const Title = styled.h1`
+  text-align: center;
+  color: #42145f;
+  margin-top: -70px;
+  margin-bottom: 70px;
 `

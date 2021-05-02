@@ -156,4 +156,5 @@ const SCol = styled(Col)`
 
 const SButton = styled(Button)`
     padding: 5px 18px;
+    font-family: roboto, sans-serif;
 `

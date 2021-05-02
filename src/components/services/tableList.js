@@ -14,18 +14,18 @@ const TableList = (props) => {
         <STable responsive striped size="sm">
             <thead>
                 <TableTr>
-                    <th>SERVICE</th>
-                    <th>CUSTOMERS</th>
-                    <th>MANAGER</th>
-                    <th>ACTIONS</th>
+                    <th>Service</th>
+                    <th>Manager</th>
+                    <th>Customers</th>
+                    <th>Actions</th>
                 </TableTr>
             </thead>
             <tbody>
                 {services?.map((service, i) => (
                     <TableTr key={i}>
                         <td><Link to={`/details/${service.id}`}>{service.name}</Link></td>
-                        <td>{service.subscribes}</td>
                         <td>{service.manager}</td>
+                        <td>{service.subscribes}</td>
                         <td>
                             <BiEdit style={{ cursor: "pointer" }} className="text-primary mr-1 font-weight-normal" onClick={() => editService(service.id)} />
                             <BiTrash style={{ cursor: "pointer" }} className="text-danger font-weight-normal" onClick={() => deleteService(service)} />
@@ -81,7 +81,7 @@ const STable = styled(Table)`
 const TableTr = styled.tr`
 
     th {
-        background-color: rgb(206, 59, 87, 0.2);
+        background-color: rgb(206, 59, 87, 0.1);
         padding: 10px;
     }
     td {

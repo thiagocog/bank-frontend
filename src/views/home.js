@@ -19,7 +19,12 @@ const Services = () => {
   const services = useSelector(state => state.service.all)
   const loading = useSelector(state => state.service.loading)
 
-  // console.log(services)
+  const subs = services.map(item => (
+    item.subscribes
+  ))
+
+
+  console.log(`######## ${subs}`)
   useEffect(() => {
     dispatch(getServices());
   }, [dispatch])

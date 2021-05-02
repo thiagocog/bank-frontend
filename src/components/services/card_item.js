@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -6,11 +7,15 @@ import {
   CardSubtitle,
   Button,
   Container,
+  CardFooter,
 } from "reactstrap";
 import styled from "styled-components";
 
 const CardItem = (props) => {
-  const { name, id, status, manager } = props.item;
+
+  const isAdmin = useSelector(state => state.auth.isAdmin)
+
+  const { name, id, status, manager, subscribes } = props.item;
 
   const IsService = ({ isFalse }) => {
     if (isFalse) {
@@ -34,6 +39,8 @@ const CardItem = (props) => {
             More information...
           </Button>
         </SCardBody>
+        {isAdmin ? <SCardFooter>Costumers: {subscribes}</SCardFooter> : "" }
+        
       </SCard>
     </SContainer>
   );
@@ -42,15 +49,12 @@ export default CardItem;
 
 const SCard = styled(Card)`
   max-width: 100%;
-  /* background-color: rgb(206, 59, 87, 0.1); */
   color: #42145f;
   margin-top: 20px;
   justify-content: center;
-  /* border: 1px solid rgb(206, 59, 87); */
   box-shadow: 2px 2px 6px rgba(206, 59, 87,0.3);
 
   :hover {
-    /* background-color: rgb(206, 59, 87, 0.3); */
     background-color: rgb(206, 59, 87, 0.1);
     transition: 0.4s;
   }
@@ -68,3 +72,9 @@ const SCardBody = styled(CardBody)`
     min-width: 300px !important;
   }
 `;
+
+const SCardFooter = styled(CardFooter)`
+  /* background-color: rgb(206, 59, 87, 0.3); */
+  background-color: rgb(66, 20, 95, 0.95);
+  color: #fff;
+`

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { NavLink as RRDNavLink } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from "react"
+import { NavLink as RRDNavLink } from "react-router-dom"
+import { useSelector, useDispatch } from 'react-redux'
 import {
   Collapse,
   Navbar,
@@ -16,9 +16,9 @@ import {
 import { MdPermIdentity } from "react-icons/md"
 
 // importações locais
-import styled from "styled-components";
-import { isAuthenticated } from "../../config/auth";
-import { logoutAction } from "../../store/auth/auth.action";
+import styled from "styled-components"
+import { isAuthenticated } from "../../config/auth"
+import { logoutAction } from "../../store/auth/auth.action"
 import history from '../../config/history'
 
 
@@ -27,10 +27,10 @@ import history from '../../config/history'
 const Header = () => {
 
   const dispatch = useDispatch()
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
-  const [tooltipOpen, setTooltipOpen] = useState(false);
-  const toggleToolTip = () => setTooltipOpen(!tooltipOpen);
+  const [isOpen, setIsOpen] = useState(false)
+  const toggle = () => setIsOpen(!isOpen)
+  const [tooltipOpen, setTooltipOpen] = useState(false)
+  const toggleToolTip = () => setTooltipOpen(!tooltipOpen)
   const isAdmin = useSelector(state => state.auth.isAdmin)
   const user = useSelector(state => state.auth.client)
 
@@ -71,7 +71,8 @@ const Header = () => {
         <NavbarToggler onClick={toggle} />
           <Container>
             <SCollapse isOpen={isOpen} navbar>
-              <Nav className="mr-auto" navbar>
+              {isAuthenticated() ? (
+                <Nav className="mr-auto" navbar>
                 <NavItem>
                   <SNavLink
                     exact
@@ -88,7 +89,7 @@ const Header = () => {
                       <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/services">Services</SNavLink>
                     </NavItem>
                     <NavItem>
-                      <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/users">Users</SNavLink>
+                      <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/users">Costumers</SNavLink>
                     </NavItem>
                   </>
                 ) : ""}
@@ -103,6 +104,7 @@ const Header = () => {
                   </SNavLink>
                 </NavItem>
               </Nav>
+              ) : ""}
               <SNav>
                 {isAuthenticated() ? (
                   <UncontrolledDropdown nav inNavbar>
@@ -116,7 +118,7 @@ const Header = () => {
                     </DropdownMenu>
                   </UncontrolledDropdown>
                 ) : ""}
-            </SNav>
+              </SNav>
             </SCollapse>
           </Container>
         <SNavbarText>
@@ -189,7 +191,12 @@ const SCollapse = styled(Collapse)`
       color: #fff !important;
     }
   }
-`;
+
+  /* h1 {
+    align-items: center;
+  } */
+
+`
 
 const SNavbarText = styled(NavbarText)`
   color: #fff !important;
