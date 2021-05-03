@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 import styled from "styled-components";
 import ReactSwal from "../../plugins/swal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteSubscription } from "../../store/service/serv.action";
 
 
@@ -18,6 +18,8 @@ import { deleteSubscription } from "../../store/service/serv.action";
 
 const List = ({ clients }) => {
   const dispatch = useDispatch()
+  const isAdmin = useSelector(state => state.auth.isAdmin)
+
 
   const [modal, setModal] = useState({ 
     isOpen: false, 
@@ -76,7 +78,7 @@ const List = ({ clients }) => {
             <thead>
               <TableTr>
                 <th>Name</th>
-                <th>Email</th>
+                {isAdmin ? (<th>Email</th>) : ""}
                 {/* <th>Adress</th> */}
                 <th>Amount</th>
                 {/* <th>Action</th> */}
@@ -87,7 +89,8 @@ const List = ({ clients }) => {
                 clients.map((v, i) => (
                   <TableTr key={i}>
                     <td>{v.user.name}</td>
-                    <td>{v.user.email}</td>
+                    {isAdmin ? (<td>{v.user.email}</td>) : ""}
+                    
                     {/* <td>{v.user.address}</td> */}
                     <td>£ {v.user.value} </td>
                     {/* <td>
@@ -120,11 +123,11 @@ const List = ({ clients }) => {
             </ModalFooter>
           </Modal>
         </div>
-      ) : (
+      ) : isAdmin ? (
         <div>
           <h3>No client yet...</h3>
         </div>
-      )}
+      ) : ""}
     </div>
   );
 };

@@ -23,7 +23,9 @@ const Details = (props) => {
   const registered = useSelector(state => state.service.details.registered)
   const loading = useSelector(state => state.service.loading)
   const subscriptions = useSelector(state => state.service.details.clients)
-  const [form, setForm] = useState({})
+  const [form, setForm] = useState({
+    value: ""
+  })
 
 
   const handleChange = (props) => {
@@ -59,6 +61,9 @@ const Details = (props) => {
             showConfirmButton: false,
             showCloseButton: true,
           })
+          setForm({
+            value: ""
+          })
         })
         .catch(erro => console.log(`Erro ao realizar a inscrição no serviço`))
     }
@@ -83,36 +88,39 @@ const Details = (props) => {
     </SJumbotron>
   );
 
+  const isNotValid = () => form?.value?.length === 0
+
   const Menu = () => (
     <Navbar expand="md mb-4">
       <SButton
+        disabled={!registered ? isNotValid() : ""}
         onClick={toggleSubscription}
         color={registered ? "danger" : "info"}
         size="md"
       >
-        {!registered ? (<><FaUserPlus/>Make your proposal</>) : "Cancel your proposal"} 
+        {!registered ? (<><SFaUserPlus/>Make your proposal</>) : "Cancel your proposal"} 
 
       </SButton>
     </Navbar>
   );
 
-  
 
   const mountScreen = (details) => (
     <DetailsAll responsive>
       {detailsService(details)}
       {!isAdmin ? (<> {Menu()}
       <FormGroup>
-           <Label for="value">Value</Label>
-           <Input type="text" name="value" id="value" value={form.value || ""} onChange={handleChange}/>
-         </FormGroup> </>) : <List clients={details.clients} />
+          <Label for="value">Value</Label>
+          <Input type="number" name="value" id="value" value={form.value || ""} onChange={handleChange}/>
+      </FormGroup> <List clients={details.clients} /> </>) 
+      : <List clients={details.clients} />
       }
     </DetailsAll>
   );
 
 
-
   return loading ? <Loading /> : mountScreen(details);
+  
 };
 
 export default Details;
@@ -170,4 +178,8 @@ const DetailsAll = styled.div`
   @media (max-width: 930px) {
     margin-left: 0;
   }
+`
+
+const SFaUserPlus = styled(FaUserPlus)`
+  margin-right: 6px;
 `

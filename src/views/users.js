@@ -36,24 +36,24 @@ const Users = () => {
         <SRow>
             <SCol>
                 <STitlePage>Users</STitlePage>
-                <STable>
+                <STable responsive striped size="sm">
                     <thead>
-                        <tr>
-                            <th>NAME</th>
-                            <th>EMAIL</th>
+                        <TableTr>
+                            <th>Name</th>
+                            <th>Email</th>
                             {/* <th>AUTHORIZATION</th> */}
-                            <th>NUMBER OF PROPOSALS</th>
-                            <th>PROPOSALS</th>
-                        </tr>
+                            <th>Number of proposals</th>
+                            <th>Proposals</th>
+                        </TableTr>
                     </thead>
                     <tbody>
                         {users?.map((user, i) => (
-                            <tr key={i}>
+                            <TableTr key={i}>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.clients.length}</td>
                                 <td>{user.clients.length > 0 ? <div onClick={() => toggle(user)} style={{cursor: 'pointer'}}><VscListFilter/></div> : "" } </td>
-                            </tr>
+                            </TableTr>
                         ))}
                     </tbody>
                 </STable>
@@ -109,15 +109,23 @@ const SButton = styled(Button)`
 `
 
 const STable = styled(Table)`
+
+    overflow: hidden;
+    border-radius: 6px;
+    font-family: "Roboto", sans-serif !important;
+
     thead {
         th:nth-child(1) {
             text-align: left;
         }
         th:nth-child(2) {
-            text-align: center;
+            /* text-align: center; */
         }
         th:nth-child(3) {
-            text-align: right;
+            text-align: center;
+        }
+        th:nth-child(4) {
+            text-align: center;
         }
     }
 
@@ -127,16 +135,30 @@ const STable = styled(Table)`
             /* font-weight: bold; */
         }
         td:nth-child(2) {
-            text-align: center;
+            /* text-align: center; */
         }
         td:nth-child(3) {
-            text-align: right;
+            text-align: center;
             max-width: 70px;
+        }
+        td:nth-child(4) {
+            text-align: center;
         }
     }
    
 `
 
+const TableTr = styled.tr`
+
+    th {
+        background-color: rgb(206, 59, 87, 0.1);
+        padding: 10px;
+    }
+    td {
+        vertical-align: middle;
+        padding: 10px;
+    }
+`
 
 
 

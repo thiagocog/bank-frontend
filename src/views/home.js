@@ -13,22 +13,14 @@ import { getServices } from "../store/service/serv.action";
 const Services = () => {
   
   const dispatch = useDispatch()
-  // const [services, setServices] = useState([])
-  // const [loading, setLoading] = useState(false)
 
   const services = useSelector(state => state.service.all)
   const loading = useSelector(state => state.service.loading)
+  
 
-  const subs = services.map(item => (
-    item.subscribes
-  ))
-
-
-  console.log(`######## ${subs}`)
   useEffect(() => {
     dispatch(getServices());
   }, [dispatch])
-
 
 
   //mount services
