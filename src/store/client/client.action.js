@@ -34,13 +34,13 @@ export const updateProfile = (id) => {
     }
 }
 
-export const createSubscription = (id_service) => {
+export const createSubscription = (id_service, data) => {
 
     return async (dispatch) => {
 
         try {
 
-            const all = await createSubscriptionInService(id_service);
+            const all = await createSubscriptionInService(id_service, data);
             if (all.data) {
                 dispatch(getDetails(id_service))
             }

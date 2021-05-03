@@ -5,6 +5,7 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
+  CardText,
   Button,
   Container,
   CardFooter,
@@ -38,8 +39,10 @@ const CardItem = (props) => {
           <Button tag={Link} to={`/details/${id}`} size="sm" color="info">
             More information...
           </Button>
+          {isAdmin ? <SCardText>Costumers: {subscribes}</SCardText> : "" }
+
         </SCardBody>
-        {isAdmin ? <SCardFooter>Costumers: {subscribes}</SCardFooter> : "" }
+        {/* {isAdmin ? <SCardFooter>Costumers: {subscribes}</SCardFooter> : "" } */}
         
       </SCard>
     </SContainer>
@@ -74,7 +77,13 @@ const SCardBody = styled(CardBody)`
 `;
 
 const SCardFooter = styled(CardFooter)`
-  /* background-color: rgb(206, 59, 87, 0.3); */
-  background-color: rgb(66, 20, 95, 0.95);
-  color: #fff;
+  background-color: #fff;
+  /* background-color: rgb(206, 59, 87, 0.1); */
+  /* background-color: rgb(66, 20, 95, 0.95); */
+  /* color: #fff; */
+`
+
+const SCardText = styled(CardText)`
+  margin-top: 10px;
+
 `

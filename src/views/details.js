@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { Button, Jumbotron } from "reactstrap";
+import { Button, Jumbotron, FormGroup, Label, Input } from "reactstrap";
 import { FaUserPlus, FaRegListAlt } from "react-icons/fa";
 import Loading from "../components/loading/index";
 import List from "../components/clientList/index";
@@ -23,6 +23,17 @@ const Details = (props) => {
   const registered = useSelector(state => state.service.details.registered)
   const loading = useSelector(state => state.service.loading)
   const subscriptions = useSelector(state => state.service.details.clients)
+  const [form, setForm] = useState({})
+
+
+  const handleChange = (props) => {
+    const { name, value } = props.target;
+    setForm({
+        ...form,
+        [name]: value
+        // .toLocaleString('en-GB',{style: 'currency', currency: 'GBP'})
+    });
+  };
 
 
   const toggleSubscription = () => {
@@ -40,7 +51,7 @@ const Details = (props) => {
         .catch(erro => console.log(`Erro ao remover inscrição no serviço`))
 
     } else {
-      dispatch(createSubscription(id))
+      dispatch(createSubscription(id, form))
         .then(() => {
           ReactSwal.fire({
             icon: 'success',
@@ -79,35 +90,23 @@ const Details = (props) => {
         color={registered ? "danger" : "info"}
         size="md"
       >
-        {!registered ? (<><FaUserPlus/>Do your proposal</>) : "Cancel your proposal"} 
+        {!registered ? (<><FaUserPlus/>Make your proposal</>) : "Cancel your proposal"} 
 
       </SButton>
     </Navbar>
   );
 
-  // const mountScreen = (details) => (
-  //   <DetailsAll responsive>
-  //     {detailsService(details)}
-  //     {Menu()}
-
-  //     {isClient ? (
-  //       <Client id={id} update={setUpdate} isForm={setClient} />
-  //     ) : (
-  //       <List clients={details.clients} update={setUpdate} />
-  //     )}
-  //   </DetailsAll>
-  // );
+  
 
   const mountScreen = (details) => (
     <DetailsAll responsive>
       {detailsService(details)}
-      {!isAdmin ? Menu() : <List clients={details.clients} />}
-
-      {/* {isClient ? (
-        <Client id={id} update={setUpdate} isForm={setClient} />
-      ) : (
-        
-      )} */}
+      {!isAdmin ? (<> {Menu()}
+      <FormGroup>
+           <Label for="value">Value</Label>
+           <Input type="text" name="value" id="value" value={form.value || ""} onChange={handleChange}/>
+         </FormGroup> </>) : <List clients={details.clients} />
+      }
     </DetailsAll>
   );
 
