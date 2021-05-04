@@ -96,6 +96,12 @@ const SignUp = () => {
                 <Label for="address">Address:</Label>
                 <Input disabled={loading} type="text" name="address" id="address" onChange={handleChange} value={form.address || ""} placeholder="Informe seu endereço" />
               </FormGroup>
+              {form.type === '2' && 
+                <FormGroup>
+                  <Label for="income">Annual Income:</Label>
+                  <Input disabled={loading} type="number" name="annual_income" id="annual_income" onChange={handleChange} value={form.annual_income || ""} placeholder="Informe seu salário anual" />
+                </FormGroup>
+              }
               <FormGroup>
                 <Label for="password">Password:</Label>
                 <Input disabled={loading} type="password" name="password" id="password" onChange={handleChange} value={form.password || ""} placeholder="Informe sua senha" />

@@ -82,7 +82,7 @@ const List = ({ clients }) => {
                   <th>Email</th>
                   <th>Adress</th>
                 </>) : ""}
-                
+                <th>Annual Income</th>
                 <th>Amount</th>
                 {/* <th>Action</th> */}
               </TableTr>
@@ -94,7 +94,7 @@ const List = ({ clients }) => {
                     <td>{v.user.name}</td>
                     {isAdmin ? (<><td>{v.user.email}</td><td>{v.user.address}</td></>) : ""}
                     
-                    
+                    <td>£ {v.user.annual_income} </td>
                     <td>£ {v.user.value} </td>
                     {/* <td>
                       <Button
