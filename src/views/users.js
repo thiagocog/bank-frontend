@@ -42,7 +42,7 @@ const Users = () => {
                             <th>Name</th>
                             <th>Email</th>
                             {/* <th>AUTHORIZATION</th> */}
-                            <th>Number of proposals</th>
+                            <th>Quantity of proposals</th>
                             <th>Proposals</th>
                         </TableTr>
                     </thead>

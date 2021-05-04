@@ -52,7 +52,7 @@ const SignUp = () => {
 
   const isNotValid = () => {
     // const inputs = ['name', 'birthday', 'email', 'password']
-    const inputs = ['name', 'email', 'password', 'type']
+    const inputs = ['name', 'email', 'password', 'type', 'address']
     const invalid = (label) => !Object.keys(form).includes(label) || form[label].length === 0
     return inputs.some(item => invalid(item))
   }
@@ -91,6 +91,10 @@ const SignUp = () => {
               <FormGroup>
                 <Label for="email">E-mail:</Label>
                 <Input disabled={loading} type="email" name="email" id="email" onChange={handleChange} value={form.email || ""} placeholder="Informe seu E-mail" />
+              </FormGroup>
+              <FormGroup>
+                <Label for="address">Address:</Label>
+                <Input disabled={loading} type="text" name="address" id="address" onChange={handleChange} value={form.address || ""} placeholder="Informe seu endereço" />
               </FormGroup>
               <FormGroup>
                 <Label for="password">Password:</Label>

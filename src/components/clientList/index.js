@@ -78,8 +78,11 @@ const List = ({ clients }) => {
             <thead>
               <TableTr>
                 <th>Name</th>
-                {isAdmin ? (<th>Email</th>) : ""}
-                {/* <th>Adress</th> */}
+                {isAdmin ? (<>
+                  <th>Email</th>
+                  <th>Adress</th>
+                </>) : ""}
+                
                 <th>Amount</th>
                 {/* <th>Action</th> */}
               </TableTr>
@@ -89,9 +92,9 @@ const List = ({ clients }) => {
                 clients.map((v, i) => (
                   <TableTr key={i}>
                     <td>{v.user.name}</td>
-                    {isAdmin ? (<td>{v.user.email}</td>) : ""}
+                    {isAdmin ? (<><td>{v.user.email}</td><td>{v.user.address}</td></>) : ""}
                     
-                    {/* <td>{v.user.address}</td> */}
+                    
                     <td>£ {v.user.value} </td>
                     {/* <td>
                       <Button

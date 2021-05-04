@@ -108,12 +108,12 @@ const Details = (props) => {
   const mountScreen = (details) => (
     <DetailsAll responsive>
       {detailsService(details)}
-      {!isAdmin ? (<> {Menu()}
+      {!isAdmin && !registered ? (<> {Menu()}
       <FormGroup>
           <Label for="value">Value</Label>
-          <Input type="number" name="value" id="value" value={form.value || ""} onChange={handleChange}/>
+          <Input type="number" name="value" id="value" value={form.value || ""} placeholder="Value" onChange={handleChange}/>
       </FormGroup> <List clients={details.clients} /> </>) 
-      : <List clients={details.clients} />
+      : !isAdmin && registered ? (<>{Menu()} <List clients={details.clients} /></>) : <List clients={details.clients} />
       }
     </DetailsAll>
   );
@@ -121,7 +121,7 @@ const Details = (props) => {
 
   return loading ? <Loading /> : mountScreen(details);
   
-};
+}
 
 export default Details;
 
