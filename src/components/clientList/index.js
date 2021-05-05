@@ -74,7 +74,7 @@ const List = ({ clients }) => {
     <div>
       {clients && clients.length ? (
         <div>
-          <STable responsive striped size="sm">
+          <STable responsive striped size="sm" className={!isAdmin && "clienttable"}>
             <thead>
               <TableTr>
                 <th>Name</th>
@@ -110,7 +110,7 @@ const List = ({ clients }) => {
                 ))}
             </tbody>
           </STable>
-          <Modal isOpen={modal.isOpen} toggle={toggleModal}>
+          {/* <Modal isOpen={modal.isOpen} toggle={toggleModal}>
             <ModalHeader toggle={toggleModal}>Delete client</ModalHeader>
             <ModalBody>
               Do you want delete
@@ -124,7 +124,7 @@ const List = ({ clients }) => {
                 Cancel
               </Button>
             </ModalFooter>
-          </Modal>
+          </Modal> */}
         </div>
       ) : isAdmin ? (
         <div>
@@ -143,20 +143,35 @@ const STable = styled(Table)`
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   margin-bottom: 80px;
+  max-width: 80%;
+  margin: 0 auto;
+
+  &.clienttable {
+    max-width: 60%;
+    /* margin: 0 auto; */
+
+    th {
+      :nth-child(3) {
+        min-width: 50px;
+      }
+    }
+    
+  }
+
 `;
 
 const TableTr = styled.tr`
   th {
     padding: 10px !important;
     background-color: rgb(206, 59, 87, 0.2);
-    :nth-child(n) {
+    /* :nth-child(n) {
+      min-width: 200px;
+    } */
+    :nth-child(1) {
       min-width: 200px;
     }
-    :nth-child(1) {
-      min-width: 250px;
-    }
     :nth-child(2) {
-      min-width: 300px;
+      min-width: 200px;
     }
     :nth-child(3) {
       min-width: 200px;
@@ -166,6 +181,7 @@ const TableTr = styled.tr`
     }
     :nth-child(5) {
       min-width: 10px;
+      text-align: center;
     }
   }
   td {

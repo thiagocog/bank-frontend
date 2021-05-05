@@ -110,16 +110,15 @@ const Details = (props) => {
       {detailsService(details)}
       {!isAdmin && !registered ? (<> {Menu()}
       <FormGroup>
-          <Label for="value">Value</Label>
-          <Input type="number" name="value" id="value" value={form.value || ""} placeholder="Value" onChange={handleChange}/>
+          {/* <Label for="value">Value</Label> */}
+          <Input style={{width: "50%", margin: "0 auto"}} type="number" name="value" id="value" value={form.value || ""} placeholder="Value" onChange={handleChange}/>
       </FormGroup> <List clients={details.clients} /> </>) 
       : !isAdmin && registered ? (<>{Menu()} <List clients={details.clients} /></>) : <List clients={details.clients} />
       }
     </DetailsAll>
   );
 
-
-  return loading ? <Loading /> : mountScreen(details);
+  return loading ? <Loading /> : mountScreen(details)
   
 }
 
@@ -168,6 +167,7 @@ const SButton = styled(Button)`
   display: flex;
   align-items: center;
   padding: 10px;
+  margin: 0 auto;
 `
 
 const DetailsAll = styled.div`
