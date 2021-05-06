@@ -11,7 +11,7 @@ import { getServices } from "../store/service/serv.action";
 
 
 const Services = () => {
-  
+  document.title = "TechnoBank - Home"
   const dispatch = useDispatch()
 
   const services = useSelector(state => state.service.all)
@@ -19,7 +19,7 @@ const Services = () => {
   
 
   useEffect(() => {
-    dispatch(getServices());
+    dispatch(getServices())
   }, [dispatch])
 
 
@@ -29,7 +29,7 @@ const Services = () => {
       <Col container md="6" xl="6" sm="12" xs="12" key={i} className="mb-4">
         <CardItem item={{ ...item, status: true }} />
       </Col>
-    ));
+    ))
 
   return (
     <div>

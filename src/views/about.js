@@ -4,6 +4,7 @@ import { TitlePage } from '../assets/styled';
 
 
 const About = () => {
+  document.title = "TechnoBank - About"
   return (
     <Box className="history">
       <STitlePage>Our History</STitlePage>

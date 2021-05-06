@@ -15,7 +15,7 @@ import styled from 'styled-components';
 
 
 const SignUp = () => {
-
+  document.title = 'TechnoBank - SignUp'
   const [hasError, setHasError] = useState(false)
   const [success, showSuccess] = useState(false)
   const dispatch = useDispatch();
@@ -84,38 +84,38 @@ const SignUp = () => {
           <SCardHeader tag="h4" className="text-center">Register</SCardHeader>
           <CardBody>
             <Form>
-              <FormGroup>
-                <Label for="nome">Name:</Label>
-                <Input disabled={loading} type="text" name="name" id="name" onChange={handleChange} value={form.name || ""} placeholder="Informe seu Nome" />
-              </FormGroup>
-              <FormGroup>
-                <Label for="email">E-mail:</Label>
-                <Input disabled={loading} type="email" name="email" id="email" onChange={handleChange} value={form.email || ""} placeholder="Informe seu E-mail" />
-              </FormGroup>
-              <FormGroup>
-                <Label for="address">Address:</Label>
-                <Input disabled={loading} type="text" name="address" id="address" onChange={handleChange} value={form.address || ""} placeholder="Informe seu endereço" />
-              </FormGroup>
-              {form.type === '2' && 
-                <FormGroup>
-                  <Label for="income">Annual Income:</Label>
-                  <Input disabled={loading} type="number" name="annual_income" id="annual_income" onChange={handleChange} value={form.annual_income || ""} placeholder="Informe seu salário anual" />
-                </FormGroup>
-              }
-              <FormGroup>
-                <Label for="password">Password:</Label>
-                <Input disabled={loading} type="password" name="password" id="password" onChange={handleChange} value={form.password || ""} placeholder="Informe sua senha" />
-              </FormGroup>
               <SFormGroup className="radio-input">
                 <div>
                   <Label for="type">Client</Label>
                   <Input disabled={loading} type="radio" name="type" id="type-client" onChange={handleChange} value='2' />
                 </div>
                 <div>
-                  <Label for="type">Administrator</Label>
+                  <Label for="type">Admin</Label>
                   <Input disabled={loading} type="radio" name="type" id="type-admin" onChange={handleChange} value='1' />
                 </div>
               </SFormGroup>
+              <FormGroup>
+                {/* <Label for="nome">Name:</Label> */}
+                <Input disabled={loading} type="text" name="name" id="name" onChange={handleChange} value={form.name || ""} placeholder="Name" />
+              </FormGroup>
+              <FormGroup>
+                {/* <Label for="email">E-mail:</Label> */}
+                <Input disabled={loading} type="email" name="email" id="email" onChange={handleChange} value={form.email || ""} placeholder="E-mail" />
+              </FormGroup>
+              <FormGroup>
+                {/* <Label for="address">Address:</Label> */}
+                <Input disabled={loading} type="text" name="address" id="address" onChange={handleChange} value={form.address || ""} placeholder="Address" />
+              </FormGroup>
+              {form.type === '2' && 
+                <FormGroup>
+                  {/* <Label for="income">Annual Income:</Label> */}
+                  <Input disabled={loading} type="number" name="annual_income" id="annual_income" onChange={handleChange} value={form.annual_income || ""} placeholder="Annual income" />
+                </FormGroup>
+              }
+              <FormGroup>
+                {/* <Label for="password">Password:</Label> */}
+                <Input disabled={loading} type="password" name="password" id="password" onChange={handleChange} value={form.password || ""} placeholder="Password" />
+              </FormGroup>
               <Button color={isNotValid() || loading ? 'secondary' : 'info'} disabled={isNotValid()} size="sm" block onClick={submitForm}>
                   {loading ? (<><Spinner size="sm" color="light" /> Loading...</>) : "Register"}
               </Button>

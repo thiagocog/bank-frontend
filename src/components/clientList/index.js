@@ -74,7 +74,7 @@ const List = ({ clients }) => {
     <div>
       {clients && clients.length ? (
         <div>
-          <STable responsive striped size="sm" className={!isAdmin && "clienttable"}>
+          <STable hover responsive size="sm" className={!isAdmin && "clienttable"}>
             <thead>
               <TableTr>
                 <th>Name</th>

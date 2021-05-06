@@ -6,7 +6,6 @@ import http from "../config/http";
 const getBankAllServices = () => http.get("/services")
 
 const getServiceDetails = (id) => http.get(`/services/${id}`)
-// acho que o back não está enviando os clients para um usuário cliente (na verdade o back só envia o próprio aluno para o usuário cliente -- essa parte é importante)
 
 const createServiceClient = (id, data) => http.post(`services/${id}/client`, data)
 

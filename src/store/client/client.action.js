@@ -1,8 +1,9 @@
-import { createSubscriptionInService, getBankAllUsers, removeSubscriptionInService } from '../../services/client.service'
+import { createSubscriptionInService, getBankAllUsers, getBankUser, putServiceUser, removeSubscriptionInService } from '../../services/client.service'
 import { getDetails } from '../service/serv.action'
 
 export const TYPES = {
-    CLIENT_ALL: "CLIENT_ALL"
+    CLIENT_ALL: "CLIENT_ALL",
+    CLIENT_PROFILE: "CLIENT_PROFILE"
 }
 
 export const getClientAll = () => {
@@ -21,14 +22,27 @@ export const getClientAll = () => {
     }
 }
 
-export const updateProfile = (id) => {
+export const updateProfile = ({ id, ...data }) => {
 
     return async (dispatch) => {
 
         try {
+            await putServiceUser(id, data)
+
+            // if (response) {
+
+                // const client = await getBankUser(id)
+
+                dispatch({
+                    type: TYPES.CLIENT_PROFILE, 
+                    data: data
+                })
+
+            // }
+            
             
         } catch (error) {
-            
+            console.log(`Erro ao atualizar usuário`);
         }
 
     }

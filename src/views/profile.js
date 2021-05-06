@@ -10,11 +10,12 @@ import { updateProfile } from '../store/client/client.action';
 
 
 const Profile = () => {
-
+    document.title = 'TechnoBank - Profile'
     const dispatch = useDispatch()
 
     const profile = useSelector(state => state.auth.client)
     const loading = useSelector(state => state.auth.loading)
+    const isAdmin = useSelector(state => state.auth.isAdmin)
 
     const [form, Serform] = useState({ ...profile })
 
@@ -29,18 +30,18 @@ const Profile = () => {
     const updateForm = () => {
         const nform = {
             ...form,
-            name: form.name.toUpperCase(),
             email: form.email.toLowerCase()
         }
-        dispatch(updateProfile())
+        delete nform.type
+        dispatch(updateProfile(nform))
     }
 
     const isNotValid = () => {
         // const inputs = ['name', 'birthday', 'email', 'password']
-        const inputs = ['name', 'email']
+        const inputs = ['name', 'email', 'address']
         const invalid = (label) => !Object.keys(form).includes(label) || form[label].length === 0
         return inputs.some(item => invalid(item))
-      }
+    }
 
    
     return (
@@ -61,12 +62,22 @@ const Profile = () => {
                         <CardBody>
                             <FormGroup>
                                 <Label for="name">Name</Label>
-                                <Input type="text" name="name" id="name" value={form.name || ""} className="text-uppercase" onChange={handleChange} />
+                                <Input type="text" name="name" id="name" value={form.name || ""} onChange={handleChange} />
                             </FormGroup>
                             <FormGroup>
                                 <Label for="email">Email</Label>
                                 <Input type="email" name="email" id="email" value={form.email || ""} className="text-lowercase" onChange={handleChange} />
                             </FormGroup>
+                            <FormGroup>
+                                <Label for="email">Address</Label>
+                                <Input type="text" name="address" id="address" value={form.address || ""} onChange={handleChange} />
+                            </FormGroup>
+                            {!isAdmin && 
+                            <FormGroup>
+                                <Label for="email">Annual Income (£)</Label>
+                                <Input type="number" name="annual_income" id="annual_income" value={form.annual_income || ""} className="text-lowercase" onChange={handleChange} />
+                            </FormGroup>
+                            }
                             <FormGroup>
                                 <SButton disabled={isNotValid()} color={isNotValid() || loading ? 'secondary' : 'info'} onClick={updateForm}>Update</SButton>
                             </FormGroup>

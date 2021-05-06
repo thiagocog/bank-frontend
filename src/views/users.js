@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react'
 import { TitlePage } from '../assets/styled'
 import { Button, Table, Row, Col, Modal, ModalHeader, ModalBody } from 'reactstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { getServices } from '../store/service/serv.action';
-import { getAllUsers } from '../store/auth/auth.action';
 import { getClientAll } from '../store/client/client.action'
 import styled from 'styled-components';
 import { VscListFilter } from 'react-icons/vsc'
@@ -11,6 +9,7 @@ import { VscListFilter } from 'react-icons/vsc'
 
 
 const Users = () => {
+    document.title = 'TechnoBank - Costumers'
 
     const dispatch = useDispatch()
     const users = useSelector(state => state.client.all)
@@ -36,7 +35,7 @@ const Users = () => {
         <SRow>
             <SCol>
                 <STitlePage>Users</STitlePage>
-                <STable responsive striped size="sm">
+                <STable hover responsive size="sm">
                     <thead>
                         <TableTr>
                             <th>Name</th>

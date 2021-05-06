@@ -1,4 +1,5 @@
 import { TYPES } from './auth.action'
+import { TYPES as TYPES_CLIENTS } from '../client/client.action'
 import { getToken, getClient } from "../../config/auth"
 
 
@@ -47,11 +48,11 @@ const reducer = (state = INITIAL_STATE, action) => {
       state.isAdmin = false
       state.error = []
       return state
-    // case TYPES.SIGN_ALL:
-    //   state.all = action.data
-    //   state.error = []
-    //   state.loading = false
-    //   return state
+    case TYPES_CLIENTS.CLIENT_PROFILE:
+      state.isAdmin = false
+      state.client = { ...action.data }
+      state.error = []
+      return state
     default:
       return state;
   }

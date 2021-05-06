@@ -11,7 +11,7 @@ const TableList = (props) => {
 
     return (
         
-        <STable responsive striped size="sm">
+        <STable hover responsive size="sm">
             <thead>
                 <TableTr>
                     <th>Service</th>

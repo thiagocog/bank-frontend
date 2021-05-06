@@ -15,7 +15,7 @@ import FormService from '../components/services/form';
 
 
 const ManageServices = () => {
-
+    document.title = 'TechnoBank - Services'
     // state
     const dispatch = useDispatch()
     const [modal, setModal] = useState(false)

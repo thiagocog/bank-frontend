@@ -14,21 +14,20 @@ import styled from 'styled-components';
 
 
 const SignIn = () => {
+  document.title = 'TechnoBank - SignIn'
 
-  const dispatch = useDispatch();
-  const [hasError, setHasError] = useState(false);
+  const dispatch = useDispatch()
+  const [hasError, setHasError] = useState(false)
   const error = useSelector(state => state.auth.error)
   const loading = useSelector(state => state.auth.loading)
-
 
   const [form, setForm] = useState({
     user: 'thiago.cgoncalves@al.infnet.edu.br',
     password: '123456'
   })
 
-
   const handleChange = (props) => {
-    const { name, value } = props.target;
+    const { name, value } = props.target
     setForm({
         ...form,
         [name]: value,
@@ -68,12 +67,12 @@ const SignIn = () => {
           <CardBody>
             <Form>
               <FormGroup>
-                <Label for="email">E-mail:</Label>
-                <Input disabled={loading} type="email" name="user" id="user" onChange={handleChange} value={form.user || ""} placeholder="Informe seu E-mail" />
+                {/* <Label for="email">E-mail:</Label> */}
+                <Input disabled={loading} type="email" name="user" id="user" onChange={handleChange} value={form.user || ""} placeholder="E-mail" />
               </FormGroup>
               <FormGroup>
-                <Label for="password">Password:</Label>
-                <Input disabled={loading} type="password" name="password" id="password" onChange={handleChange} value={form.password || ""} placeholder="Informe sua senha" />
+                {/* <Label for="password">Password:</Label> */}
+                <Input disabled={loading} type="password" name="password" id="password" onChange={handleChange} value={form.password || ""} placeholder="Password" />
               </FormGroup>
 
               <SButton color={isNotValid() || loading ? 'secondary' : 'info'} disabled={isNotValid()} size="sm" block onClick={submitForm}>

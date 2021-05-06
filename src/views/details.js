@@ -15,6 +15,8 @@ import { createSubscription, removeSubscription } from "../store/client/client.a
 
 
 const Details = (props) => {
+  document.title = "TechnoBank - Details"
+
   const { id } = useParams();
   const dispatch = useDispatch()
 
@@ -111,7 +113,7 @@ const Details = (props) => {
       {!isAdmin && !registered ? (<> {Menu()}
       <FormGroup>
           {/* <Label for="value">Value</Label> */}
-          <Input style={{width: "50%", margin: "0 auto"}} type="number" name="value" id="value" value={form.value || ""} placeholder="Value" onChange={handleChange}/>
+          <Input style={{width: "50%", margin: "0 auto"}} type="number" name="value" id="value" value={form.value || ""} placeholder="Insert your proposal" onChange={handleChange}/>
       </FormGroup> <List clients={details.clients} /> </>) 
       : !isAdmin && registered ? (<>{Menu()} <List clients={details.clients} /></>) : <List clients={details.clients} />
       }
