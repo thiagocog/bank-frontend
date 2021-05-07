@@ -59,7 +59,7 @@ const Sfooter = styled.footer`
   padding: 11px;
   opacity: 0;
 
-  @media (min-width: 1101px) {
+  @media (min-width: 1300px) {
     animation: slideBack .4s forwards;
   }
   
@@ -107,7 +107,7 @@ const Sfooter = styled.footer`
     padding-bottom: 10px;
     color: #fff;
   }
-  @media (max-width: 1100px) {
+  @media (max-width: 1300px) {
     min-width: 100%;
     height: 72px;
     position: relative;
@@ -142,7 +142,7 @@ const SVscTriangleRight = styled(VscTriangleRight)`
   top: 380px;
   color: #62145f;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1300px) {
     display: none;
   }
 `

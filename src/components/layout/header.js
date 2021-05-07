@@ -49,8 +49,6 @@ const Header = () => {
   })
   
   
-
-
   return (
     <header>
       <SNavbar color="dark" dark expand="sm">
@@ -159,7 +157,7 @@ const SNavbar = styled(Navbar)`
   }
 
 
-  @media (max-width: 769px) {
+  @media (max-width: 768px) {
     justify-content: space-between;
   }
 `;
@@ -201,7 +199,7 @@ const SCollapse = styled(Collapse)`
 const SNavbarText = styled(NavbarText)`
   color: #fff !important;
   margin-right: 150px !important;
-  @media (max-width: 769px) {
+  @media (max-width: 920px) {
     display: none;
   } 
 `
@@ -219,6 +217,8 @@ const SNavLink = styled(NavLink)`
     background-color: #fff !important;
   }
 
+
+
   @media (max-width: 575px) {
 
     :nth-child(1) {
@@ -235,6 +235,34 @@ const SNavbarBrand = styled(NavbarBrand)`
     background-color: #fff;
     border-radius: 50%;
     margin-right: 50px;
+    
+    @media (max-width: 1085px) {
+      margin-right: 0; 
+      margin-left: 30px;
+    }
+
+    @media (max-width: 1005px) {
+      margin-right: 0; 
+      margin-left: 100px;
+    }
+
+    @media (max-width: 935px) {
+      margin-right: 0; 
+      margin-left: 30px;
+    }
+
+    @media (max-width: 850px) {
+      margin-right: 0; 
+      margin-left: 40px;
+    }
+    @media (max-width: 780px) {
+      display: none;
+    }
+    @media (max-width: 576px) {
+      margin-left: 4px;
+      display: block;
+    }
+
   }
 `;
 
@@ -265,7 +293,9 @@ const SMdPermIdentity = styled(MdPermIdentity) `
   margin-right: 6px;
 
   @media (max-width: 575px) {
-    display: none;
+    /* display: none; */
+    margin-right: 0;
+    margin-left: 16px;
   }
 
 `

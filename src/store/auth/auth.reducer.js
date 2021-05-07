@@ -5,7 +5,6 @@ import { getToken, getClient } from "../../config/auth"
 
 
 const INITIAL_STATE = {
-  // all: [], não preciso mais pois não vou guardar aqui os usuários
   isAdmin: getClient().type === '1' || false,
   loading: false,
   token: getToken() || "",
@@ -13,7 +12,6 @@ const INITIAL_STATE = {
   error: [],
   registered: false
 }
-
 
 
 const reducer = (state = INITIAL_STATE, action) => { 
@@ -47,6 +45,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       state.client = {}
       state.isAdmin = false
       state.error = []
+      state.registered = false
       return state
     case TYPES_CLIENTS.CLIENT_PROFILE:
       state.isAdmin = false
@@ -57,6 +56,5 @@ const reducer = (state = INITIAL_STATE, action) => {
       return state;
   }
 }
-
 
 export default reducer

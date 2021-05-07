@@ -27,20 +27,16 @@ export const updateProfile = ({ id, ...data }) => {
     return async (dispatch) => {
 
         try {
-            await putServiceUser(id, data)
 
-            // if (response) {
-
-                // const client = await getBankUser(id)
-
-                dispatch({
-                    type: TYPES.CLIENT_PROFILE, 
-                    data: data
+            const response = await putServiceUser(id, data)
+            if (response) {
+                const user = await getBankUser(id)
+                dispatch({ 
+                    type: TYPES.CLIENT_PROFILE,
+                    data: user.data
                 })
-
-            // }
-            
-            
+            }
+              
         } catch (error) {
             console.log(`Erro ao atualizar usuário`);
         }

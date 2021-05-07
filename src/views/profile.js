@@ -33,6 +33,7 @@ const Profile = () => {
             email: form.email.toLowerCase()
         }
         delete nform.type
+        delete nform.subscribes
         dispatch(updateProfile(nform))
     }
 
@@ -51,11 +52,11 @@ const Profile = () => {
             <STitlePage>Profile</STitlePage>
 
             <SRow>
-                <Col>
+                <SCol>
                     <div className="image">
                         <img src="/images/bg.svg" alt=""/>
                     </div>
-                </Col>
+                </SCol>
                 <Col xs="12" sm="12" md="8" lg="6">
                     <Card>
                         <SCardHeader tag="h5">Edit your Profile</SCardHeader>
@@ -75,7 +76,7 @@ const Profile = () => {
                             {!isAdmin && 
                             <FormGroup>
                                 <Label for="email">Annual Income (£)</Label>
-                                <Input type="number" name="annual_income" id="annual_income" value={form.annual_income || ""} className="text-lowercase" onChange={handleChange} />
+                                <Input type="number" name="annual_income" id="annual_income" value={form.annual_income || ""} onChange={handleChange} />
                             </FormGroup>
                             }
                             <FormGroup>
@@ -138,4 +139,13 @@ const SRow = styled(Row)`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 991px) {
+        justify-content: center;
+    }
+`
+const SCol = styled(Col)`
+    @media (max-width: 991px) {
+        display: none;
+    }
 `

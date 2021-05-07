@@ -57,7 +57,7 @@ export const signUpAction = (data) => {
       })
       setTimeout(() => {
         history.push('/')
-      }, 5000)
+      }, 3000)
     } catch (error) {
       dispatch({ type: TYPES.SIGN_ERROR, data: error })
     }
