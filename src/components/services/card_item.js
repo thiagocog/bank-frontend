@@ -31,7 +31,7 @@ const CardItem = (props) => {
   };
 
   return (
-    <SContainer container-fluid>
+    <SContainer>
       <SCard className={client_subscribe && 'subscribed'} >
         <SCardBody size="md">
           <CardTitle tag="h4">{name}</CardTitle>

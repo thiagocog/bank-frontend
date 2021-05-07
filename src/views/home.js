@@ -26,7 +26,7 @@ const Services = () => {
   //mount services
   const mappingServices = (services) =>
     services.map((item, i) => (
-      <Col container md="6" xl="6" sm="12" xs="12" key={i} className="mb-4">
+      <Col md="6" xl="6" sm="12" xs="12" key={i} className="mb-4">
         <CardItem item={{ ...item, status: true }} />
       </Col>
     ))

@@ -51,7 +51,7 @@ const Header = () => {
   
   return (
     <header>
-      <SNavbar color="dark" dark expand="sm">
+      <SNavbar color="dark" dark expand="lg">
         <SNavbarBrand tag={RRDNavLink} to="/" id="logoHeader">
           <Tooltip
             placement="top"
@@ -70,7 +70,7 @@ const Header = () => {
           <Container>
             <SCollapse isOpen={isOpen} navbar>
               {isAuthenticated() ? (
-                <Nav className="mr-auto" navbar>
+                <_Nav className="mr-auto" navbar>
                 <NavItem>
                   <SNavLink
                     exact
@@ -101,7 +101,7 @@ const Header = () => {
                     About
                   </SNavLink>
                 </NavItem>
-              </Nav>
+              </_Nav>
               ) : ""}
               <SNav>
                 {isAuthenticated() ? (
@@ -133,6 +133,13 @@ export default Header;
 
 
 // ESTILIZAÇÃO DOS COMPONENTES
+
+const _Nav = styled(Nav)`
+  @media (max-width: 768px) {
+    /* background-color: black !important; */
+    /* margin-left: -80 !important; */
+  }
+`
 
 const SNavbar = styled(Navbar)`
   display: flex;
@@ -199,7 +206,7 @@ const SCollapse = styled(Collapse)`
 const SNavbarText = styled(NavbarText)`
   color: #fff !important;
   margin-right: 150px !important;
-  @media (max-width: 920px) {
+  @media (max-width: 936px) {
     display: none;
   } 
 `
@@ -255,7 +262,7 @@ const SNavbarBrand = styled(NavbarBrand)`
       margin-right: 0; 
       margin-left: 40px;
     }
-    @media (max-width: 780px) {
+    @media (max-width: 780px) and (min-width: 768px) {
       display: none;
     }
     @media (max-width: 576px) {
@@ -273,8 +280,8 @@ const SDropdownToggle = styled(DropdownToggle)`
   margin-right: 1rem;
 
   @media (max-width: 575px) {
-      margin-bottom: 14px;
-    }
+    margin-bottom: 14px;
+  }
 
   .profile {
     font-family: "Montserrat", serif;
